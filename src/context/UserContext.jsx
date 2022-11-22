@@ -8,7 +8,7 @@ const UserComponent = ({ children }) => {
   useEffect(() => {
     let user = localStorage.getItem("user");
     user = JSON.parse(user);
-    console.log(user);
+    // console.log(user);
     if (user) return setUserState(user);
   }, []);
 

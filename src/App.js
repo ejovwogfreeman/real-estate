@@ -10,7 +10,8 @@ import {
 } from "react-router-dom";
 import Home from "./pages/Home";
 import { useState } from "react";
-import Navbar from "./components/Navbar";
+// import Navbar from "./components/Navbar";
+// import NavbarComp from "./components/NavbarComp";
 import FindApartmentSearch from "./pages/FindApartmentSearch";
 import Login from "./pages/Login";
 import Aboutus from "./pages/Aboutus";
@@ -18,10 +19,14 @@ import FindApartment from "./pages/FindApartment";
 import FindApartmentDetail from "./pages/FindApartmentDetail";
 import Modal from "./components/FindApartmentDetail/Modal";
 import ToastifyComponent from "./context/ToastifyContext";
+import Corporate from "./pages/Corporate";
 import UserComponent from "./context/UserContext";
 import Toastify from "./components/Toastify";
 import Signup from "./admin/SignUp";
 import Signin from "./admin/Signin";
+import Verify from "./admin/Verify";
+import Dashboard from "./admin/Dashboard";
+import CreateInvestor from "./admin/CreateInvestor";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -41,7 +46,9 @@ function App() {
     <>
       <UserComponent>
         <ToastifyComponent>
-          <Toastify />
+          <div style={{ position: "fixed", zIndex: "1000000" }}>
+            <Toastify />
+          </div>
           <div className={`${showModal ? " h-screen overflow-hidden" : ""}`}>
             <BrowserRouter>
               {showModal && (
@@ -51,7 +58,7 @@ function App() {
                   modalStage={modalStage}
                 />
               )}
-              <Navbar />
+
               <Routes>
                 <Route exact path="/" element={<Home />} />
                 <Route exact path="/login" element={<Login />} />
@@ -76,14 +83,13 @@ function App() {
                   path="/find-apartment"
                   element={<FindApartment />}
                 />
-                <Route exact path="/recoa-communities" element={<Login />} />
-                <Route
-                  exact
-                  path="/corporate-tenant"
-                  element={<>corporate tenant</>}
-                />
+                <Route exact path="/investor-login" element={<Login />} />
+                <Route exact path="/corporate-tenant" element={<Corporate />} />
                 <Route path="/admin_signup" element={<Signup />} />
+                <Route path="/admin_verify" element={<Verify />} />
                 <Route path="/admin_signin" element={<Signin />} />
+                <Route path="/admin_dashboard" element={<Dashboard />} />
+                <Route path="/admin_create" element={<CreateInvestor />} />
               </Routes>
             </BrowserRouter>
           </div>

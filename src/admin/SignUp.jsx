@@ -53,7 +53,7 @@ const Signup = () => {
 
     const register = await registerUser(user);
 
-    if (register) {
+    if (register.user) {
       localStorage.setItem("user", JSON.stringify(register));
       setUserState(register);
       setToastifyState({
@@ -62,7 +62,7 @@ const Signup = () => {
         variant: "success",
         open: true,
       });
-      navigate("/admin_signin");
+      navigate("/admin_verify");
       setLoading(false);
     } else {
       setToastifyState({

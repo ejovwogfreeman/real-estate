@@ -1,5 +1,7 @@
 import React from "react";
+import "../css/Main.css";
 import side_image from "../images/Rectangle 71.png";
+import ScrollToTop from "../components/ScrollToTop";
 
 import car_image1 from "../images/Rectangle 66.jpg";
 import car_image2 from "../images/Rectangle 69 (2).jpg";
@@ -10,11 +12,17 @@ import car_image6 from "../images/Rectangle 69 (3).jpg";
 import FindApartmentGrid from "../components/FindApartmentDetail/FindApartmentGrid";
 import CarouselApartment from "../components/FindApartmentDetail/CarouselApartment";
 // import Modal from '../components/FindApartmentDetail/Modal'
+import NavbarComp from "../components/NavbarComp";
 
 function FindApartmentDetail({ closeModal, openModal }) {
+  const style = {
+    background: "black",
+  };
   return (
     <>
-      <div className="mx-20 mt-8">
+      <NavbarComp style={style} />
+      <ScrollToTop />
+      <div className="mx-20 pt-8 top-space">
         {/* Modal */}
 
         {/*  */}

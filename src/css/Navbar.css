@@ -1,0 +1,207 @@
+nav {
+  color: rgb(31, 31, 71);
+  /* background-color: white; */
+  position: fixed;
+  width: 100%;
+  z-index: 10000;
+  transition: 0.2s ease-in-out;
+}
+nav a {
+  /* color: rgb(31, 31, 71); */
+  color: white;
+}
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 5%;
+  height: 50px;
+  color: white;
+  background-color: rgb(31, 31, 71);
+}
+.top-nav .mail-cont .mail {
+  margin-right: 3px;
+}
+.top-nav div {
+  display: flex;
+  align-items: center;
+}
+
+.top-nav .icons {
+  display: flex;
+}
+
+.top-nav .icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 50%;
+  margin-left: 10px;
+  color: white;
+  border: 1px solid white;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 5%;
+  height: 80px;
+}
+.main-nav .links {
+  display: flex;
+  align-items: center;
+}
+
+.main-nav .links a {
+  margin-left: 30px;
+  color: white;
+}
+
+.main-nav .links a:focus {
+  color: #0ea113;
+  border-bottom: 4px solid #0ea113;
+}
+
+.heart {
+  margin-top: 3px;
+  margin-right: 3px;
+}
+
+.main-nav .links .donate {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(31, 31, 71);
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: 0.5s ease-in-out;
+}
+
+.main-nav .links .donate:hover {
+  display: flex;
+  align-items: center;
+  color: white;
+  background-color: rgb(31, 31, 71);
+}
+
+.main-nav .right {
+  display: none;
+}
+
+.close {
+  font-size: 30px;
+  padding-top: 20px;
+  padding-right: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.show-cont {
+  position: fixed;
+  width: 100%;
+  z-index: 100000;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  height: 100vh;
+  left: 0;
+  margin-left: 0px;
+}
+
+.show-close {
+  position: fixed;
+  width: 100%;
+  z-index: 100000;
+  background-color: transparent;
+  color: white;
+  height: 100vh;
+  left: 0;
+  margin-left: 0px;
+}
+
+.show {
+  position: fixed;
+  width: 70%;
+  z-index: 100000;
+  background-color: black;
+  color: white;
+  height: 100vh;
+  left: 0;
+  margin-left: 0px;
+  transition: 0.5s ease-in-out;
+}
+
+.hide {
+  position: fixed;
+  margin-left: -300px;
+}
+
+.showall {
+  display: none;
+}
+
+@media only screen and (max-width: 960px) {
+  .showall {
+    display: block;
+  }
+  .main-nav .links {
+    display: none;
+  }
+  .main-nav .right {
+    display: block;
+    font-size: 30px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  .main-nav {
+    height: 60px;
+    justify-content: space-between;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .top-nav,
+  .main-nav {
+    padding: 0px 2%;
+  }
+  .top-nav .icons a {
+    margin-left: 5px;
+  }
+  .top-nav .mail-cont {
+    font-size: 12px;
+  }
+}
+
+.mobile-links {
+  text-align: center;
+  margin-top: 15px;
+  padding: 0px 20px;
+}
+
+.mobile-links li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: white;
+  transition: 0.5s ease-in-out;
+}
+.mobile-links li a:hover {
+  border-bottom: 1px solid white;
+  background-color: rgba(256, 256, 256, 0.1);
+}
+
+.mobile-links .heart {
+  margin-top: 2px;
+}
+
+.transparent {
+  background-color: transparent;
+}
+
+.add-bg {
+  background-color: black;
+  color: white;
+}

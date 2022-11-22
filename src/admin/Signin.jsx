@@ -31,7 +31,7 @@ const Signin = () => {
     setLoading(true);
     const login = await loginUser(user);
 
-    if (login.success) {
+    if (login.AccessToken) {
       localStorage.setItem("user", JSON.stringify(login));
       setUserState(login);
       setToastifyState({
