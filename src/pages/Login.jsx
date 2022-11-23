@@ -9,8 +9,10 @@ import axios from "axios";
 import { ToastifyContext } from "../context/ToastifyContext";
 
 const Login = () => {
-  const [ToastifyState, setToastifyState] = useState(ToastifyContext);
+  const [ToastifyState, setToastifyState] = React.useContext(ToastifyContext);
+  const [loading, setLoading] = useState(false);
   const [investors, setInvestors] = useState([]);
+
   useEffect(() => {
     axios
       .get("https://recoa-api.herokuapp.com/api/auth/investors", (res) => {
@@ -22,9 +24,11 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
   const form = { username: username, password: password };
+
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
+    setLoading(true);
     e.preventDefault();
     axios
       .post("https://recoa-api.herokuapp.com/api/auth/investorlogin", form, {
@@ -34,17 +38,27 @@ const Login = () => {
         },
       })
       .then((res) => {
+        console.log(res.data.message);
+        setLoading(false);
+        setToastifyState({
+          ...ToastifyState,
+          message: res.data.message,
+          variant: "success",
+          open: true,
+        });
+        navigate("/");
         localStorage.setItem("investor-detail", JSON.stringify(res.data));
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+        setLoading(false);
+        setToastifyState({
+          ...ToastifyState,
+          message: err.response.data.message,
+          variant: "error",
+          open: true,
+        });
       });
-
-    setToastifyState({
-      ...ToastifyState,
-      message: "Investor Login Successful",
-      variant: "success",
-      open: true,
-    });
-    navigate("/admin_dashboard");
-    // setLoading(false);
   };
   const style = {
     background: "black",
@@ -76,7 +90,11 @@ const Login = () => {
                 required
               >
                 {investors.map((x) => {
-                  return <option value={`${x.username}`}>{x.username}</option>;
+                  return (
+                    <option value={`${x.username}`} key={x.id}>
+                      {x.username}
+                    </option>
+                  );
                 })}
               </select>
               <input
@@ -87,7 +105,9 @@ const Login = () => {
                 required
                 placeholder="Enter Password"
               />
-              <button>Login</button>
+              <button disabled={loading}>
+                {loading ? "LOADING..." : "LOGIN"}
+              </button>
             </form>
 
             {/* <div className="flex bg-white justify-between items-center py-3 px-4 rounded-lg w-full mt-5">

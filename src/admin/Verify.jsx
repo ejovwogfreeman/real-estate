@@ -2,18 +2,19 @@ import React, { useState } from "react";
 import "../css/Admin.css";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastifyContext } from "../context/ToastifyContext";
-import { UserContext } from "../context/UserContext";
-import { verifyUser } from "../api";
+// import { UserContext } from "../context/UserContext";
+// import { verifyUser } from "../api";
+import axios from "axios";
 
 const Verify = () => {
+  const [ToastifyState, setToastifyState] = React.useContext(ToastifyContext);
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
     email: "",
     usercode: "",
     admincode: "",
   });
   const { email, usercode, admincode } = user;
-
-  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setUser({
@@ -22,38 +23,69 @@ const Verify = () => {
     });
   };
 
-  const [ToastifyState, setToastifyState] = React.useContext(ToastifyContext);
-  const [UserState, setUserState] = React.useContext(UserContext);
-
   const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = (e) => {
     setLoading(true);
-    const verify = await verifyUser(user);
+    e.preventDefault();
 
-    if (verify.message) {
-      localStorage.setItem("user", JSON.stringify(verify));
-      setUserState(verify);
-      setToastifyState({
-        ...ToastifyState,
-        message: verify.message,
-        variant: "success",
-        open: true,
+    axios
+      .post("https://recoa-api.herokuapp.com/api/auth/verify", user, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "applicatioon/json",
+        },
+      })
+      .then((res) => {
+        console.log(res.data.message);
+        setLoading(false);
+        setToastifyState({
+          ...ToastifyState,
+          message: res.data.message,
+          variant: "success",
+          open: true,
+        });
+        navigate("/admin_signin");
+        // localStorage.setItem("investor-detail", JSON.stringify(res.data));
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+        setLoading(false);
+        setToastifyState({
+          ...ToastifyState,
+          message: err.response.data.message,
+          variant: "error",
+          open: true,
+        });
       });
-      navigate("/admin_signin");
-      setLoading(false);
-    } else {
-      setToastifyState({
-        ...ToastifyState,
-        message: verify.message,
-        variant: "error",
-        open: true,
-      });
-      console.log(verify.message);
-      setLoading(false);
-    }
   };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   const verify = await verifyUser(user);
+
+  //   if (verify.message) {
+  //     localStorage.setItem("user", JSON.stringify(verify));
+  //     setUserState(verify);
+  //     setToastifyState({
+  //       ...ToastifyState,
+  //       message: verify.message,
+  //       variant: "success",
+  //       open: true,
+  //     });
+  //     navigate("/admin_signin");
+  //     setLoading(false);
+  //   } else {
+  //     setToastifyState({
+  //       ...ToastifyState,
+  //       message: verify.message,
+  //       variant: "error",
+  //       open: true,
+  //     });
+  //     console.log(verify.message);
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <div className="container">

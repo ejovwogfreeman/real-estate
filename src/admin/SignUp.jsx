@@ -2,18 +2,19 @@ import React, { useState } from "react";
 import "../css/Admin.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ToastifyContext } from "../context/ToastifyContext";
-import { UserContext } from "../context/UserContext";
-import { registerUser } from "../api";
+import axios from "axios";
 
 const Signup = () => {
+  const [ToastifyState, setToastifyState] = React.useContext(ToastifyContext);
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
     username: "",
     email: "",
     password: "",
   });
+
   const { username, email, password } = user;
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setUser({
@@ -22,14 +23,10 @@ const Signup = () => {
     });
   };
 
-  const [ToastifyState, setToastifyState] = React.useContext(ToastifyContext);
-  const [UserState, setUserState] = React.useContext(UserContext);
-
   const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = (e) => {
     setLoading(true);
+    e.preventDefault();
 
     if (password.length < 8) {
       setToastifyState({
@@ -50,31 +47,101 @@ const Signup = () => {
       });
       return setLoading(false);
     }
-
-    const register = await registerUser(user);
-
-    if (register.user) {
-      localStorage.setItem("user", JSON.stringify(register));
-      setUserState(register);
-      setToastifyState({
-        ...ToastifyState,
-        message: register.message,
-        variant: "success",
-        open: true,
+    axios
+      .post("https://recoa-api.herokuapp.com/api/auth/register", user, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "applicatioon/json",
+        },
+      })
+      .then((res) => {
+        console.log(res.data.message);
+        setLoading(false);
+        setToastifyState({
+          ...ToastifyState,
+          message: res.data.message,
+          variant: "success",
+          open: true,
+        });
+        navigate("/admin_verify");
+        localStorage.setItem("signup-detail", JSON.stringify(res.data));
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+        setLoading(false);
+        setToastifyState({
+          ...ToastifyState,
+          message: err.response.data.message,
+          variant: "error",
+          open: true,
+        });
+        console.log(ToastifyState);
       });
-      navigate("/admin_verify");
-      setLoading(false);
-    } else {
-      setToastifyState({
-        ...ToastifyState,
-        message: register.message,
-        variant: "error",
-        open: true,
-      });
-      console.log(register.message);
-      setLoading(false);
-    }
   };
+  // const { username, email, password } = user;
+  // const [confirmPassword, setConfirmPassword] = useState("");
+  // const [loading, setLoading] = useState(false);
+
+  // const handleChange = (e) => {
+  //   setUser({
+  //     ...user,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
+
+  // const [ToastifyState, setToastifyState] = React.useContext(ToastifyContext);
+  // const [UserState, setUserState] = React.useContext(UserContext);
+
+  // const navigate = useNavigate();
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+
+  //   if (password.length < 8) {
+  //     setToastifyState({
+  //       ...ToastifyState,
+  //       message: "Passwords must be at least 8 characters long",
+  //       variant: "error",
+  //       open: true,
+  //     });
+  //     return setLoading(false);
+  //   }
+
+  //   if (user.password !== confirmPassword) {
+  //     setToastifyState({
+  //       ...ToastifyState,
+  //       message: "Passwords does not match",
+  //       variant: "error",
+  //       open: true,
+  //     });
+  //     return setLoading(false);
+  //   }
+
+  //   const register = await registerUser(user);
+
+  //   if (register.user) {
+  //     localStorage.setItem("user", JSON.stringify(register));
+  //     setUserState(register);
+  //     setToastifyState({
+  //       ...ToastifyState,
+  //       message: register.message,
+  //       variant: "success",
+  //       open: true,
+  //     });
+  //     navigate("/admin_verify");
+  //     setLoading(false);
+  //   } else {
+  //     setToastifyState({
+  //       ...ToastifyState,
+  //       message: register.message,
+  //       variant: "error",
+  //       open: true,
+  //     });
+  //     console.log(register.message);
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <div className="container">

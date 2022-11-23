@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import "../css/Admin.css";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastifyContext } from "../context/ToastifyContext";
-import { UserContext } from "../context/UserContext";
-import { loginUser } from "../api";
+// import { UserContext } from "../context/UserContext";
+// import { loginUser } from "../api";
+import axios from "axios";
 
 const Signin = () => {
+  const [ToastifyState, setToastifyState] = React.useContext(ToastifyContext);
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
   const { email, password } = user;
-
-  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setUser({
@@ -21,38 +22,69 @@ const Signin = () => {
     });
   };
 
-  const [ToastifyState, setToastifyState] = React.useContext(ToastifyContext);
-  const [UserState, setUserState] = React.useContext(UserContext);
-
   const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = (e) => {
     setLoading(true);
-    const login = await loginUser(user);
+    e.preventDefault();
 
-    if (login.AccessToken) {
-      localStorage.setItem("user", JSON.stringify(login));
-      setUserState(login);
-      setToastifyState({
-        ...ToastifyState,
-        message: login.message,
-        variant: "success",
-        open: true,
+    axios
+      .post("https://recoa-api.herokuapp.com/api/auth/login", user, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "applicatioon/json",
+        },
+      })
+      .then((res) => {
+        console.log(res.data.message);
+        setLoading(false);
+        setToastifyState({
+          ...ToastifyState,
+          message: res.data.message,
+          variant: "success",
+          open: true,
+        });
+        navigate("/admin_dashboard");
+        localStorage.setItem("admin-detail", JSON.stringify(res.data));
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+        setLoading(false);
+        setToastifyState({
+          ...ToastifyState,
+          message: err.response.data.message,
+          variant: "error",
+          open: true,
+        });
       });
-      navigate("/admin_dashboard");
-      setLoading(false);
-    } else {
-      setToastifyState({
-        ...ToastifyState,
-        message: login.message,
-        variant: "error",
-        open: true,
-      });
-      console.log(login.message);
-      setLoading(false);
-    }
   };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   const login = await loginUser(user);
+
+  //   if (login.AccessToken) {
+  //     localStorage.setItem("user", JSON.stringify(login));
+  //     setUserState(login);
+  //     setToastifyState({
+  //       ...ToastifyState,
+  //       message: login.message,
+  //       variant: "success",
+  //       open: true,
+  //     });
+  //     navigate("/admin_dashboard");
+  //     setLoading(false);
+  //   } else {
+  //     setToastifyState({
+  //       ...ToastifyState,
+  //       message: login.message,
+  //       variant: "error",
+  //       open: true,
+  //     });
+  //     console.log(login.message);
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <div className="container">
