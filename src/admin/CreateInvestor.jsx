@@ -27,6 +27,7 @@ const CreateInvestor = () => {
       let token = JSON.parse(localStorage.getItem("admin-detail")).AccessToken;
       return token;
     } catch (err) {
+      console.log("no token");
       return null;
     }
   };
