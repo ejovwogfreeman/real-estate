@@ -32,27 +32,28 @@ const CreateInvestor = () => {
     const token = JSON.parse(localStorage.getItem("user")).AccessToken;
     const create = await createInvest(token, user);
 
-    if (create.AccessToken) {
-      localStorage.setItem("user", JSON.stringify(create));
-      setUserState(create);
-      setToastifyState({
-        ...ToastifyState,
-        message: create.message,
-        variant: "success",
-        open: true,
-      });
-      navigate("/admin_dashboard");
-      setLoading(false);
-    } else {
-      setToastifyState({
-        ...ToastifyState,
-        message: create.message,
-        variant: "error",
-        open: true,
-      });
-      console.log(create.message);
-      setLoading(false);
-    }
+    // if (create.AccessToken) {
+    localStorage.setItem("investor", JSON.stringify(create));
+    setUserState(create);
+    setToastifyState({
+      ...ToastifyState,
+      message: create.message,
+      variant: "success",
+      open: true,
+    });
+    console.log(create);
+    navigate("/admin_dashboard");
+    setLoading(false);
+    // } else {
+    //   setToastifyState({
+    //     ...ToastifyState,
+    //     message: create.message,
+    //     variant: "error",
+    //     open: true,
+    //   });
+    //   console.log(create.message);
+    //   setLoading(false);
+    // }
   };
 
   return (

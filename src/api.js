@@ -82,9 +82,7 @@ export const createInvest = async (token, user) => {
 ///////create investor/////////
 ///////////////////////////////
 
-export const investorLogin = async (token, user) => {
-  token = JSON.parse(localStorage.getItem("user")).AccessToken;
-  console.log(token);
+export const investorLogin = async (login) => {
   const res = await fetch(
     "https://recoa-api.herokuapp.com/api/auth/investorlogin",
     {
@@ -92,14 +90,42 @@ export const investorLogin = async (token, user) => {
       headers: {
         "Content-Type": "application/json",
         Accept: "applicatioon/json",
-        Authorization: "Bearer " + token,
+        // Authorization: "Bearer " + token,
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify(login),
     }
   );
   const create = await res.json();
   return create;
 };
+
+///////////////////////////////
+/////////get investors/////////
+///////////////////////////////
+
+// getInvestors();
+///////////////////////////////
+///////create investor/////////
+///////////////////////////////
+
+// export const investorLogin = async (token, user) => {
+//   token = JSON.parse(localStorage.getItem("user")).AccessToken;
+//   console.log(token);
+//   const res = await fetch(
+//     "https://recoa-api.herokuapp.com/api/auth/investorlogin",
+//     {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Accept: "applicatioon/json",
+//         Authorization: "Bearer " + token,
+//       },
+//       body: JSON.stringify(user),
+//     }
+//   );
+//   const create = await res.json();
+//   return create;
+// };
 
 ///////////////////////////////
 ///////create property/////////

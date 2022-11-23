@@ -4,27 +4,52 @@ import Background_image from "../images/Rectangle 46 (1).jpg";
 import ScrollToTop from "../components/ScrollToTop";
 import "../css/Main.css";
 import NavbarComp from "../components/NavbarComp";
+import { useEffect } from "react";
+import axios from "axios";
+import { ToastifyContext } from "../context/ToastifyContext";
 
 const Login = () => {
-  const [form, setForm] = useState({
-    company: "company 1",
-    password: "",
+  const [ToastifyState, setToastifyState] = useState(ToastifyContext);
+  const [investors, setInvestors] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://recoa-api.herokuapp.com/api/auth/investors", (res) => {
+        res.json();
+      })
+      .then((data) => setInvestors(data.data.investors));
   });
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
+  const form = { username: username, password: password };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
-    navigate("/find-apartment/search");
+    axios
+      .post("https://recoa-api.herokuapp.com/api/auth/investorlogin", form, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "applicatioon/json",
+        },
+      })
+      .then((res) => {
+        localStorage.setItem("investor-detail", JSON.stringify(res.data));
+      });
+
+    setToastifyState({
+      ...ToastifyState,
+      message: "Investor Login Successful",
+      variant: "success",
+      open: true,
+    });
+    navigate("/admin_dashboard");
+    // setLoading(false);
   };
   const style = {
     background: "black",
   };
+
   return (
     <>
       <NavbarComp style={style} />
@@ -45,21 +70,19 @@ const Login = () => {
             <form action="" onSubmit={handleSubmit} className="login-form">
               <select
                 id=""
-                onChange={handleChange}
-                value={form.company}
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
                 name="company"
                 required
               >
-                <option value="Company 1">company 1</option>
-                <option value="Company 2">company 2</option>
-                <option value="Company 3">company 3</option>
-                <option value="Company 4">company 4</option>
-                <option value="Company 5">company 5</option>
+                {investors.map((x) => {
+                  return <option value={`${x.username}`}>{x.username}</option>;
+                })}
               </select>
               <input
                 type="text"
-                onChange={handleChange}
-                value={form.password}
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
                 name="password"
                 required
                 placeholder="Enter Password"

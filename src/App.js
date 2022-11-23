@@ -10,8 +10,6 @@ import {
 } from "react-router-dom";
 import Home from "./pages/Home";
 import { useState } from "react";
-// import Navbar from "./components/Navbar";
-// import NavbarComp from "./components/NavbarComp";
 import FindApartmentSearch from "./pages/FindApartmentSearch";
 import Login from "./pages/Login";
 import Aboutus from "./pages/Aboutus";
@@ -100,3 +98,6 @@ function App() {
 }
 
 export default App;
+
+// nddc password
+// RECOARdiU1HIw
