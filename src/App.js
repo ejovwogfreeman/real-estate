@@ -24,7 +24,9 @@ import Signup from "./admin/SignUp";
 import Signin from "./admin/Signin";
 import Verify from "./admin/Verify";
 import Dashboard from "./admin/Dashboard";
-import CreateInvestor from "./admin/CreateInvestor";
+// import CreateInvestor from "./pages/CreateInvestor";
+// import WaitList from "./pages/WaitLisit2";
+import WaitList from "./pages/WaitList";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -59,7 +61,7 @@ function App() {
 
               <Routes>
                 <Route exact path="/" element={<Home />} />
-                <Route exact path="/login" element={<Login />} />
+                {/* <Route exact path="/login" element={<Login />} /> */}
                 <Route exact path="/about-us" element={<Aboutus />} />
                 <Route
                   exact
@@ -81,13 +83,13 @@ function App() {
                   path="/find-apartment"
                   element={<FindApartment />}
                 />
-                <Route exact path="/investor-login" element={<Login />} />
+                <Route exact path="/investor_login" element={<Login />} />
+                <Route exact path="/join_waitlist/:id" element={<WaitList />} />
                 <Route exact path="/corporate-tenant" element={<Corporate />} />
                 <Route path="/admin_signup" element={<Signup />} />
                 <Route path="/admin_verify" element={<Verify />} />
                 <Route path="/admin_signin" element={<Signin />} />
                 <Route path="/admin_dashboard" element={<Dashboard />} />
-                <Route path="/admin_create" element={<CreateInvestor />} />
               </Routes>
             </BrowserRouter>
           </div>

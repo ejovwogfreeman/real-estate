@@ -48,7 +48,7 @@
 
 .background {
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url("../images/Rectangle 46.jpg");
+    url("../RecoaImages/Pic\ 001\ -\ Home\ Page\ Image\ -\ D.png");
   width: 100%;
   height: 700px;
   background-size: cover;
@@ -60,4 +60,30 @@
   justify-content: right;
   color: white;
   padding: 0px 5%;
+}
+
+.join-form div {
+  margin-bottom: 10px;
+}
+
+.join-form .flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.join-form .flex div {
+  width: 49%;
+}
+
+.join-form textarea {
+  width: 100%;
+  outline: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.join-form textarea,
+.join-form input {
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }

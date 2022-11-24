@@ -9,6 +9,7 @@ import ScrollToTop from "../components/ScrollToTop";
 import NavbarComp from "../components/NavbarComp";
 import { BsSearch } from "react-icons/bs";
 import "../css/Main.css";
+// import Slider from "../components/Slider";
 
 // images
 
@@ -126,6 +127,7 @@ const Home = () => {
           ]}
         />
       </div>
+      {/* <Slider /> */}
     </>
   );
 };

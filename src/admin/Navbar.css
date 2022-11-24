@@ -1,0 +1,21 @@
+.admin-nav {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 5%;
+  height: 50px;
+}
+
+.admin-nav ul {
+  display: flex;
+  align-items: center;
+}
+
+.admin-nav ul li {
+  margin-left: 20px;
+}
+
+nav a:hover {
+  color: white;
+}

@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import "../css/Admin.css";
-import { Link, useNavigate } from "react-router-dom";
-import { ToastifyContext } from "../context/ToastifyContext";
-// import { UserContext } from "../context/UserContext";
-// import { createInvest } from "../api";
+import "./Modal.css";
+import { AiOutlineClose } from "react-icons/ai";
+import { ToastifyContext } from "../../context/ToastifyContext";
 import axios from "axios";
 
-const CreateInvestor = () => {
+const AddUser = ({ handleAdd1 }) => {
   const [ToastifyState, setToastifyState] = React.useContext(ToastifyContext);
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
@@ -34,7 +32,6 @@ const CreateInvestor = () => {
 
   const AccessToken = getToken();
 
-  const navigate = useNavigate();
   const handleSubmit = (e) => {
     setLoading(true);
     e.preventDefault();
@@ -55,55 +52,42 @@ const CreateInvestor = () => {
           variant: "success",
           open: true,
         });
-        navigate("/admin_dashboard");
+        handleAdd1();
         localStorage.setItem("investor-detail", JSON.stringify(res.data));
       })
       .catch((err) => {
-        console.log(err.response.data.message);
-        setLoading(false);
-        setToastifyState({
-          ...ToastifyState,
-          message: err.response.data.message,
-          variant: "error",
-          open: true,
-        });
+        if (err.response.data.message) {
+          setLoading(false);
+          setToastifyState({
+            ...ToastifyState,
+            message: err.response.data.message,
+            variant: "error",
+            open: true,
+          });
+        } else {
+          setLoading(false);
+          setToastifyState({
+            ...ToastifyState,
+            message: "Please Fill All Fields",
+            variant: "error",
+            open: true,
+          });
+        }
       });
   };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setLoading(true);
-  //   const token = JSON.parse(localStorage.getItem("user")).AccessToken;
-  //   const create = await createInvest(token, user);
-
-  // if (create.AccessToken) {
-  // localStorage.setItem("investor", JSON.stringify(create));
-  // setUserState(create);
-  // setToastifyState({
-  //   ...ToastifyState,
-  //   message: create.message,
-  //   variant: "success",
-  //   open: true,
-  // });
-  // console.log(create);
-  // navigate("/admin_dashboard");
-  // setLoading(false);
-  // } else {
-  //   setToastifyState({
-  //     ...ToastifyState,
-  //     message: create.message,
-  //     variant: "error",
-  //     open: true,
-  //   });
-  //   console.log(create.message);
-  //   setLoading(false);
-  // }
-  // };
-
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit} className="form">
-        <h2>CREATE INVESTOR</h2>
+    <div className="modal-cont">
+      <form
+        className="modal-cont-details modal-comp-form"
+        onSubmit={handleSubmit}
+      >
+        <div className="top">
+          <h1>Add Investor</h1>
+          <span>
+            <AiOutlineClose onClick={handleAdd1} className="icon" />
+          </span>
+        </div>
+        <hr />
         <div>
           <label>Investor Name(Company Name)</label>
           <input
@@ -112,7 +96,6 @@ const CreateInvestor = () => {
             value={username}
             onChange={handleChange}
             placeholder="Enter Investor Username"
-            required
           />
         </div>
         <div>
@@ -123,15 +106,16 @@ const CreateInvestor = () => {
             value={email}
             onChange={handleChange}
             placeholder="Enter Investor Email"
-            required
           />
         </div>
-        <button disabled={loading}>
-          {loading ? "LOADING..." : "CREATE INVESTOR"}
-        </button>
+        <div>
+          <button disabled={loading}>
+            {loading ? "LOADING..." : "CREATE INVESTOR"}
+          </button>
+        </div>
       </form>
     </div>
   );
 };
 
-export default CreateInvestor;
+export default AddUser;

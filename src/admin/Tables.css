@@ -1,0 +1,43 @@
+.table-container {
+  padding: 60px 5%;
+}
+
+.table {
+  background-color: whitesmoke;
+  width: 600px;
+}
+
+.table .tab-heading {
+  background-color: rgb(145, 145, 238);
+  color: white;
+  padding: 15px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.table ul li {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.table ul li .res {
+  cursor: pointer;
+  font-weight: 500;
+}
+.table ul li .res:hover {
+  color: blue;
+}
+
+.table ul li .actions {
+  display: flex;
+  align-items: center;
+}
+
+.table ul li button {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}

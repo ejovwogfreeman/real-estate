@@ -46,7 +46,7 @@ const Login = () => {
           variant: "success",
           open: true,
         });
-        navigate("/");
+        navigate("/find-apartment/search");
         localStorage.setItem("investor-detail", JSON.stringify(res.data));
       })
       .catch((err) => {
@@ -78,8 +78,8 @@ const Login = () => {
         ></div>
         <div className="w-full h-full z-10 relative flex flex-row justify-center items-center">
           <div className="content flex flex-col items-center -mt-20">
-            <div className="text-6xl mb-3 font-extrabold text-red-900">
-              ExxonMobil
+            <div className="text-3xl mb-3 font-extrabold text-red-900">
+              Recoa Cooperate Tenants Login
             </div>
             <form action="" onSubmit={handleSubmit} className="login-form">
               <select

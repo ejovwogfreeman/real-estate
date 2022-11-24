@@ -1,10 +1,11 @@
 import React from "react";
 // import { GridItemFind } from '../GridItemFind'
-import ModalButton from "./ModalButton";
+// import ModalButton from "./ModalButton";
+import ModalButton from "../components/FindApartmentDetail/ModalSections/ModalButton";
 
 // import car_image1 from '../../../images/Rectangle 66.jpg'
 
-export const JoinListForm = ({ closeModal, openModal }) => {
+export const WaitList = ({ closeModal, openModal }) => {
   return (
     <div className="flex flex-row items-center">
       <div>
@@ -23,7 +24,7 @@ export const JoinListForm = ({ closeModal, openModal }) => {
         </div>
       </div>
       <div>
-        {/* <form className="bg-white py-5 px-3 rounded-lg shadow-lg">
+        <form className="bg-white py-5 px-3 rounded-lg shadow-lg">
           <div className="text-center text-2xl text-emerald-800 font-extrabold">
             Reserve
           </div>
@@ -111,10 +112,10 @@ export const JoinListForm = ({ closeModal, openModal }) => {
           >
             ADD ME TO WISHLIST
           </ModalButton>
-        </form> */}
+        </form>
       </div>
     </div>
   );
 };
 
-export default JoinListForm;
+export default WaitList;

@@ -1,22 +1,27 @@
 import React, { useState, useEffect } from "react";
 import "../css/Navbar.css";
 import NavbarMobile from "./NavbarMobile";
-// import { ImMail } from "react-icons/im";
-
-// import {
-//   FaFacebookSquare,
-//   FaTwitterSquare,
-//   FaInstagramSquare,
-//   FaLinkedin,
-// } from "react-icons/fa";
+import axios from "axios";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 const NavbarComp = ({ style }) => {
+  const [hide1, setHide1] = useState(false);
+  const [hide2, setHide2] = useState(false);
+
   const [open, setOpen] = useState(false);
   const [UserState, setUserState] = React.useContext(UserContext);
   const [change, setChange] = useState(false);
+  const [property, setProperty] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://recoa-api.herokuapp.com/api/property", (res) => {
+        res.json();
+      })
+      .then((data) => setProperty(data.data.properties));
+  });
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -35,30 +40,10 @@ const NavbarComp = ({ style }) => {
     <>
       <NavbarMobile open={open} handleOpen={handleOpen} />
       <nav style={style} className={change ? "add-bg" : "transparent"}>
-        {/* <div className="top-nav">
-          <div className="mail-cont">
-            <ImMail className="mail" />
-            info@hope4africa.foundation
-          </div>
-          <div className="icons">
-            <a href="https://facebook.com">
-              <FaFacebookSquare />
-            </a>
-            <a href="https://twitter.com">
-              <FaTwitterSquare />
-            </a>
-            <a href="https://instagram.com">
-              <FaInstagramSquare />
-            </a>
-            <a href="https://linkedin.com">
-              <FaLinkedin />
-            </a>
-          </div>
-        </div> */}
         <div className="main-nav">
           <div className="logo">
             <Link to="/">
-              <h1>Hope4Africa</h1>
+              <h1>RECOA COMMUTITIES</h1>
             </Link>
           </div>
           <ul className="links">
@@ -71,11 +56,73 @@ const NavbarComp = ({ style }) => {
             <li>
               <Link to="/find-apartment">Find your Apartment</Link>
             </li>
-            <li>
-              <Link to="/investor-login">Recoa Communities</Link>
+            <li className="dropdown">
+              {/* <Link to="/investor-login">Recoa Communities</Link> */}
+              <p
+                style={{ color: "white", marginLeft: "30px" }}
+                onClick={() => setHide1(!hide1)}
+              >
+                Recoa Communities
+              </p>
+              <ul
+                className={
+                  hide1 ? "dropdown-details show1" : "dropdown-details hide1"
+                }
+              >
+                {property.map((x) => {
+                  return (
+                    <li key={x.id}>
+                      <Link
+                        to={
+                          x.status === "live"
+                            ? "/investor_login"
+                            : "/join_waitlist/" + x.id
+                        }
+                      >
+                        {x.name}
+                      </Link>
+                    </li>
+                  );
+                })}
+                {/* <li>
+                  <a href="">Hello2</a>
+                </li>
+                <li>
+                  <a href="">Hello3</a>
+                </li>
+                <li>
+                  <a href="">Hello4</a>
+                </li> */}
+              </ul>
             </li>
-            <li>
-              <Link to="/corporate-tenant">Corporate Tenants</Link>
+            <li className="dropdown">
+              {/* <Link to="/corporate-tenant">Corporate Tenants</Link> */}
+              <p
+                style={{ color: "white", marginLeft: "30px" }}
+                onClick={() => setHide2(!hide2)}
+              >
+                Corporate Tenants
+              </p>
+              <ul
+                className={
+                  hide2 ? "dropdown-details show1" : "dropdown-details hide1"
+                }
+              >
+                {
+                  <li>
+                    <a href="">Hello1</a>
+                  </li>
+                }
+                {/* <li>
+                  <a href="">Hello2</a>
+                </li>
+                <li>
+                  <a href="">Hello3</a>
+                </li>
+                <li>
+                  <a href="">Hello4</a>
+                </li> */}
+              </ul>
             </li>
           </ul>
           <div className="right">
