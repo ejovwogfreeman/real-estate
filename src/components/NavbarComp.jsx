@@ -69,7 +69,7 @@ const NavbarComp = ({ style }) => {
                   hide1 ? "dropdown-details show1" : "dropdown-details hide1"
                 }
               >
-                {property.map((x) => {
+                {/* {property.map((x) => {
                   return (
                     <li key={x.id}>
                       <Link
@@ -83,16 +83,13 @@ const NavbarComp = ({ style }) => {
                       </Link>
                     </li>
                   );
-                })}
-                {/* <li>
-                  <a href="">Hello2</a>
+                })} */}
+                <li>
+                  <a href="">Login</a>
                 </li>
                 <li>
-                  <a href="">Hello3</a>
+                  <a href="">Join Wait List</a>
                 </li>
-                <li>
-                  <a href="">Hello4</a>
-                </li> */}
               </ul>
             </li>
             <li className="dropdown">
@@ -110,23 +107,20 @@ const NavbarComp = ({ style }) => {
               >
                 {
                   <li>
-                    <a href="">Hello1</a>
+                    <a href="">NDDC</a>
                   </li>
                 }
-                {/* <li>
-                  <a href="">Hello2</a>
+                <li>
+                  <a href="">Naijacat</a>
                 </li>
                 <li>
-                  <a href="">Hello3</a>
+                  <a href="">NPDC</a>
                 </li>
-                <li>
-                  <a href="">Hello4</a>
-                </li> */}
               </ul>
             </li>
           </ul>
           <div className="right">
-            <span className="mobileNav">
+            <span className="mobileNav text-light">
               <AiOutlineMenu onClick={() => setOpen(!open)} />
             </span>
           </div>

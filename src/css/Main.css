@@ -29,9 +29,11 @@
   align-items: center;
   justify-content: center;
   width: 700px;
+  background-color: transparent;
 }
 
-.select-form select {
+.select-form select,
+.select-form option {
   padding: 7px;
   width: 90%;
   border: none;
@@ -47,7 +49,7 @@
 }
 
 .background {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("../RecoaImages/Pic\ 001\ -\ Home\ Page\ Image\ -\ D.png");
   width: 100%;
   height: 700px;
@@ -57,9 +59,13 @@
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
-  justify-content: right;
+  justify-content: center;
   color: white;
   padding: 0px 5%;
+}
+
+.background div {
+  text-align: center;
 }
 
 .join-form div {
@@ -86,4 +92,61 @@
 .join-form textarea,
 .join-form input {
   border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.about-container {
+  padding: 100px 5% 10px;
+  text-align: justify;
+}
+
+.find-container {
+  padding: 100px 5% 20px;
+}
+.find-container .cont {
+  display: flex;
+}
+
+.find-container .cont .map {
+  flex: 1;
+  height: 500px;
+}
+.find-container .cont .img {
+  flex: 1;
+  height: 500px;
+  background-color: whitesmoke;
+}
+
+@media screen and (max-width: 960px) {
+  .select-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0px;
+  }
+  .background {
+    height: 500px;
+  }
+  .about-container {
+    padding: 80px 5% 10px;
+  }
+  .find-container {
+    padding: 80px 5% 20px;
+  }
+  .find-container .cont {
+    display: block;
+  }
+  .find-container .cont .map {
+    height: 400px;
+  }
+
+  .find-container .cont .img {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .find-container .cont .map {
+    height: 300px;
+  }
 }

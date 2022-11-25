@@ -9,7 +9,7 @@ import car_image4 from "../images/Rectangle 49 (3).jpg";
 import "./Slider.css";
 import { Link } from "react-router-dom";
 
-const Slider = () => {
+const Slider2 = () => {
   const options = {
     loop: true,
     margin: 10,
@@ -27,7 +27,6 @@ const Slider = () => {
       },
     },
   };
-
   return (
     <div>
       <h1 className="h1 text-center mt-lg-5 mt-3 text-success">
@@ -60,4 +59,4 @@ const Slider = () => {
   );
 };
 
-export default Slider;
+export default Slider2;

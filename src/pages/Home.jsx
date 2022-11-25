@@ -9,7 +9,7 @@ import ScrollToTop from "../components/ScrollToTop";
 import NavbarComp from "../components/NavbarComp";
 import { BsSearch } from "react-icons/bs";
 import "../css/Main.css";
-// import Slider from "../components/Slider";
+import Slider from "../components/Slider";
 
 // images
 
@@ -127,7 +127,31 @@ const Home = () => {
           ]}
         />
       </div>
-      {/* <Slider /> */}
+      <Slider />
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+        reiciendis aut minus impedit voluptas doloremque fugit temporibus
+        laborum laboriosam officia in corporis modi dicta, esse ad obcaecati
+        hic. Necessitatibus dolor sunt reiciendis, aspernatur dolorem minima
+        nulla dignissimos quae modi laborum et aliquam, aliquid ut magnam nemo
+        labore nam ipsum, sequi velit unde ab. Commodi perspiciatis fugit
+        dolorem ad corporis recusandae dolor nemo perferendis doloremque esse
+        alias, temporibus dolorum totam sed in eos asperiores magnam!
+        Consequatur soluta sed rem omnis autem tempora repellat, ea minima
+        nesciunt ullam. Cum deserunt non, quis iure nemo ipsam vel architecto.
+        Iusto voluptas deleniti quae quisquam, totam eveniet vero repudiandae
+        pariatur natus, rerum id? Officia est obcaecati distinctio, blanditiis
+        earum nostrum a at, esse vitae tempore eum suscipit dolor unde magnam.
+        Esse tenetur, quidem necessitatibus dolorum in animi officia minus
+        cumque? Tempore sapiente nesciunt inventore praesentium commodi
+        distinctio sequi quasi omnis id consectetur? Sequi praesentium cumque
+        consequatur eos distinctio provident voluptas debitis, animi nobis eum
+        illum repudiandae et, perspiciatis dolore aliquid odio doloribus vero
+        voluptatum esse commodi recusandae similique beatae? Est alias,
+        voluptatibus et assumenda, beatae repellat dolorum laudantium expedita
+        debitis rem natus officiis nemo voluptatum distinctio ipsum, doloribus
+        soluta culpa tenetur reprehenderit odio. Facere, possimus?
+      </p>
     </>
   );
 };

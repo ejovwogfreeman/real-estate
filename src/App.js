@@ -24,6 +24,7 @@ import Signup from "./admin/SignUp";
 import Signin from "./admin/Signin";
 import Verify from "./admin/Verify";
 import Dashboard from "./admin/Dashboard";
+import HomeComp from "./pages/HomeComp";
 // import CreateInvestor from "./pages/CreateInvestor";
 // import WaitList from "./pages/WaitLisit2";
 import WaitList from "./pages/WaitList";
@@ -60,7 +61,7 @@ function App() {
               )}
 
               <Routes>
-                <Route exact path="/" element={<Home />} />
+                <Route exact path="/" element={<HomeComp />} />
                 {/* <Route exact path="/login" element={<Login />} /> */}
                 <Route exact path="/about-us" element={<Aboutus />} />
                 <Route

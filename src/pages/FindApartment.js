@@ -19,16 +19,13 @@ const FindApartment = () => {
   return (
     <>
       <NavbarComp style={style} />
-      <div className="py-12 px-16 w-full h-screen bg-gradient-to-b from-teal-800 to-teal-600 top-space">
+      <div className="find-container">
         <ScrollToTop />
-        {/* container */}
-        <div className="h-[90%] flex flex-row gap rounded-lg bg-white">
-          {/* map */}
-          <div className="w-4/6 h-full">
+        <div className="cont">
+          <div className="map">
             <MapSearch />
           </div>
-          {/* locations */}
-          <div className="w-2/6 h-full">
+          <div className="img">
             <SearchSideBar
               images={[
                 car_image1,

@@ -1,0 +1,53 @@
+footer {
+  background-color: black;
+  color: white;
+  padding: 50px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+footer .icons {
+  display: flex;
+}
+
+footer .icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 50%;
+  margin-right: 10px;
+  color: white;
+  border: 1px solid white;
+  transition: 0.5s ease-in-out;
+}
+
+footer .icons a:hover {
+  color: blue;
+  border-color: blue;
+  transform: scale(1.5);
+}
+
+footer ul li a {
+  border-left: 3px solid white;
+  padding-left: 10px;
+  transition: 0.5s ease-in-out;
+}
+
+footer ul li a:hover {
+  border-color: blue;
+  margin-left: -10px;
+}
+
+@media screen and (max-width: 960px) {
+  footer {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  footer ul li a {
+    border-left: none;
+    padding-left: 0px;
+  }
+}
