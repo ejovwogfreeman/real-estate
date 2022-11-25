@@ -2,17 +2,23 @@
   padding-top: 100px;
 }
 
-/* .login-form {
-  background-color: ;
-} */
+.login-form {
+  padding-top: 50px;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+}
 
 .login-form select {
-  padding: 10px;
+  border-radius: 5px;
+  padding: 8px;
 }
 
 .login-form button {
   background-color: black;
   color: white;
+}
+
+.login-form input {
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .login-form input,

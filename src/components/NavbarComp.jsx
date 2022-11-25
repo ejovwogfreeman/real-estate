@@ -51,10 +51,10 @@ const NavbarComp = ({ style }) => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/about-us">About Us</Link>
+              <Link to="/about_us">About Us</Link>
             </li>
             <li>
-              <Link to="/find-apartment">Find your Apartment</Link>
+              <Link to="/find_apartment">Find your Apartment</Link>
             </li>
             <li className="dropdown">
               {/* <Link to="/investor-login">Recoa Communities</Link> */}
@@ -85,10 +85,10 @@ const NavbarComp = ({ style }) => {
                   );
                 })} */}
                 <li>
-                  <a href="">Login</a>
+                  <Link to="/investor_login">Login</Link>
                 </li>
                 <li>
-                  <a href="">Join Wait List</a>
+                  <Link to="/join_waitlist">Join Wait List</Link>
                 </li>
               </ul>
             </li>

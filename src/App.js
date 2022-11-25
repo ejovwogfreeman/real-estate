@@ -63,15 +63,15 @@ function App() {
               <Routes>
                 <Route exact path="/" element={<HomeComp />} />
                 {/* <Route exact path="/login" element={<Login />} /> */}
-                <Route exact path="/about-us" element={<Aboutus />} />
+                <Route exact path="/about_us" element={<Aboutus />} />
                 <Route
                   exact
-                  path="/find-apartment/search"
+                  path="/find_apartment/search"
                   element={<FindApartmentSearch />}
                 />
                 <Route
                   exact
-                  path="/find-apartment/detail"
+                  path="/find_apartment/detail"
                   element={
                     <FindApartmentDetail
                       closeModal={closeModal}
@@ -81,10 +81,11 @@ function App() {
                 />
                 <Route
                   exact
-                  path="/find-apartment"
+                  path="/find_apartment"
                   element={<FindApartment />}
                 />
                 <Route exact path="/investor_login" element={<Login />} />
+                <Route exact path="/join_waitlist/" element={<WaitList />} />
                 <Route exact path="/join_waitlist/:id" element={<WaitList />} />
                 <Route exact path="/corporate-tenant" element={<Corporate />} />
                 <Route path="/admin_signup" element={<Signup />} />

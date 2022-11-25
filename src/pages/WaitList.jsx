@@ -5,6 +5,7 @@ import { ToastifyContext } from "../context/ToastifyContext";
 import axios from "axios";
 import NavbarComp from "../components/NavbarComp";
 import ScrollToTop from "../components/ScrollToTop";
+import Footer from "../components/Footer";
 
 const WaitList = () => {
   const [ToastifyState, setToastifyState] = React.useContext(ToastifyContext);
@@ -106,7 +107,7 @@ const WaitList = () => {
       <NavbarComp style={style} />
       <div className="container">
         <ScrollToTop />
-        <form action="" onSubmit={handleSubmit} className="join-form">
+        <form action="" onSubmit={handleSubmit} className="join-form mb-4">
           <h2 className="h5 mb-4">JOIN WAIT LIST</h2>
           <div className="flex">
             <div>
@@ -218,6 +219,7 @@ const WaitList = () => {
           </button>
         </form>
       </div>
+      <Footer />
     </>
   );
 };
