@@ -49,7 +49,7 @@ const FindApartmentSearch = () => {
               />
               <div className="relative mt-10 flex flex-row justify-center">
                 <button
-                  onClick={() => navigate("/find-apartment/detail")}
+                  onClick={() => navigate("/find_apartment/detail")}
                   className="px-5 py-2 border-4 text-xl text-white border-white rounded-full uppercase"
                   type="button"
                 >

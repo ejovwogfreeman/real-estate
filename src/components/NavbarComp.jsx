@@ -69,7 +69,7 @@ const NavbarComp = ({ style }) => {
                   hide1 ? "dropdown-details show1" : "dropdown-details hide1"
                 }
               >
-                {/* {property.map((x) => {
+                {property.map((x) => {
                   return (
                     <li key={x.id}>
                       <Link
@@ -83,13 +83,13 @@ const NavbarComp = ({ style }) => {
                       </Link>
                     </li>
                   );
-                })} */}
-                <li>
+                })}
+                {/* <li>
                   <Link to="/investor_login">Login</Link>
                 </li>
                 <li>
                   <Link to="/join_waitlist">Join Wait List</Link>
-                </li>
+                </li> */}
               </ul>
             </li>
             <li className="dropdown">

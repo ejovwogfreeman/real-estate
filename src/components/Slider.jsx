@@ -36,22 +36,22 @@ const Slider = () => {
       <OwlCarousel className="owl-theme" {...options}>
         <div class="item">
           <img src={car_image1} alt="" />
-          <Link to="/find-apartment" className="bg"></Link>
+          <Link to="/find_apartment" className="bg"></Link>
           <p className="h3-lg h4">Lekki Phase 1</p>
         </div>
         <div class="item">
           <img src={car_image2} alt="" />
-          <Link to="/find-apartment" className="bg"></Link>
+          <Link to="/find_apartment" className="bg"></Link>
           <p className="h3-lg h4">Lekki Orchid District</p>
         </div>
         <div class="item">
           <img src={car_image3} alt="" />
-          <Link to="/find-apartment" className="bg"></Link>
+          <Link to="/find_apartment" className="bg"></Link>
           <p className="h3-lg h4">Epe New Town</p>
         </div>
         <div class="item">
           <img src={car_image4} alt="" />
-          <Link to="/find-apartment" className="bg"></Link>
+          <Link to="/find_apartment" className="bg"></Link>
           <p className="h3-lg h4">Lekki Phase 2</p>
         </div>
       </OwlCarousel>

@@ -49,7 +49,7 @@ const AddProperty = ({ handleAdd2 }) => {
           open: true,
         });
         handleAdd2();
-        localStorage.setItem("investor-detail", JSON.stringify(res.data));
+        localStorage.setItem("property-detail", JSON.stringify(res.data));
       })
       .catch((err) => {
         setLoading(false);
@@ -107,7 +107,7 @@ const AddProperty = ({ handleAdd2 }) => {
         </div>
         <div>
           <button disabled={loading}>
-            {loading ? "LOADING..." : "CREATE INVESTOR"}
+            {loading ? "LOADING..." : "CREATE PROPERTY"}
           </button>
         </div>
       </form>

@@ -47,7 +47,7 @@ const Login = () => {
           variant: "success",
           open: true,
         });
-        navigate("/find-apartment/search");
+        navigate("/find_apartment/");
         localStorage.setItem("investor-detail", JSON.stringify(res.data));
       })
       .catch((err) => {
@@ -68,12 +68,12 @@ const Login = () => {
       <ScrollToTop />
       <div className="background">
         <div>
-          <h1 className="h4 fw-bold">Recoa Cooperate Tenants Login</h1>
           <form
             action=""
             onSubmit={handleSubmit}
             className="login-form my-5-lg my-3"
           >
+            <h1 className="h4 fw-bold">Recoa Cooperate Tenants Login</h1>
             <select
               id=""
               onChange={(e) => setUsername(e.target.value)}

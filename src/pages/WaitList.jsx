@@ -16,7 +16,6 @@ const WaitList = () => {
     telephone: "",
     organisation: "",
     budget: "",
-    unit: "",
     email: "",
     location: "",
     date: "",
@@ -28,7 +27,6 @@ const WaitList = () => {
     telephone,
     organisation,
     budget,
-    unit,
     email,
     location,
     date,
@@ -81,8 +79,9 @@ const WaitList = () => {
           variant: "success",
           open: true,
         });
-        navigate("/admin_dashboard");
+        navigate("/");
         localStorage.setItem("investor-detail", JSON.stringify(res.data));
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -165,25 +164,15 @@ const WaitList = () => {
               />
             </div>
             <div>
-              <label>Unit</label>
+              <label>Email</label>
               <input
-                type="text"
-                name="unit"
-                value={unit}
+                type="email"
+                name="email"
+                value={email}
                 onChange={handleChange}
-                placeholder="Enter Unit"
+                placeholder="Enter Your Email"
               />
             </div>
-          </div>
-          <div>
-            <label>Email</label>
-            <input
-              type="email"
-              name="email"
-              value={email}
-              onChange={handleChange}
-              placeholder="Enter Your Email"
-            />
           </div>
           <div>
             <label>Where do you want to live</label>

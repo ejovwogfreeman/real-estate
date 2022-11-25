@@ -3,8 +3,8 @@
 }
 
 .login-form {
-  padding-top: 50px;
-  /* background-color: rgba(0, 0, 0, 0.5); */
+  padding-top: 30px;
+  background-color: rgba(256, 256, 256, 0.5);
 }
 
 .login-form select {
