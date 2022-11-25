@@ -29,7 +29,7 @@ const Verify = () => {
     e.preventDefault();
 
     axios
-      .post("https://recoa-api.herokuapp.com/api/auth/verify", user, {
+      .post("https://taximania-api.onrender.com/api/auth/verify", user, {
         headers: {
           "Content-Type": "application/json",
           Accept: "applicatioon/json",

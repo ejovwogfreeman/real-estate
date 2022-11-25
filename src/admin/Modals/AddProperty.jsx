@@ -33,7 +33,7 @@ const AddProperty = ({ handleAdd2 }) => {
     e.preventDefault();
     setLoading(true);
     axios
-      .post("https://recoa-api.herokuapp.com/api/property/", property, {
+      .post("https://taximania-api.onrender.com/api/property/", property, {
         headers: {
           "Content-Type": "application/json",
           Accept: "applicatioon/json",

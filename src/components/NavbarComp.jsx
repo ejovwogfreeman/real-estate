@@ -17,7 +17,7 @@ const NavbarComp = ({ style }) => {
 
   useEffect(() => {
     axios
-      .get("https://recoa-api.herokuapp.com/api/property", (res) => {
+      .get("https://taximania-api.onrender.com/api/property", (res) => {
         res.json();
       })
       .then((data) => setProperty(data.data.properties));

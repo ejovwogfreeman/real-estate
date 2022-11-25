@@ -36,13 +36,17 @@ const AddUser = ({ handleAdd1 }) => {
     setLoading(true);
     e.preventDefault();
     axios
-      .post("https://recoa-api.herokuapp.com/api/auth/createinvestor", user, {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "applicatioon/json",
-          Authorization: "Bearer " + AccessToken,
-        },
-      })
+      .post(
+        "https://taximania-api.onrender.com/api/auth/createinvestor",
+        user,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "applicatioon/json",
+            Authorization: "Bearer " + AccessToken,
+          },
+        }
+      )
       .then((res) => {
         console.log(res.data.message);
         setLoading(false);

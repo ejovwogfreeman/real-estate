@@ -10,7 +10,7 @@
     <script>
       const getInvestors = async () => {
         const res = await fetch(
-          "https://recoa-api.herokuapp.com/api/auth/investors"
+          "https://taximania-api.onrender.com/api/auth/investors"
         );
         const data = await res.json();
         console.log(data.investors);

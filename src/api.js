@@ -3,7 +3,7 @@
 ///////////////////
 
 // export const registerUser = async (user) => {
-//   const res = await fetch("https://recoa-api.herokuapp.com/api/auth/register", {
+//   const res = await fetch("https://taximania-api.onrender.com/api/auth/register", {
 //     method: "POST",
 //     headers: {
 //       "Content-Type": "application/json",
@@ -23,7 +23,7 @@
 
 // export const verifyUser = async (user) => {
 //   try {
-//     const res = await fetch("https://recoa-api.herokuapp.com/api/auth/verify", {
+//     const res = await fetch("https://taximania-api.onrender.com/api/auth/verify", {
 //       method: "POST",
 //       headers: {
 //         "Content-Type": "application/json",
@@ -43,7 +43,7 @@
 ///////////////////
 
 // export const loginUser = async (user) => {
-//   const res = await fetch("https://recoa-api.herokuapp.com/api/auth/login", {
+//   const res = await fetch("https://taximania-api.onrender.com/api/auth/login", {
 //     method: "POST",
 //     headers: {
 //       "Content-Type": "application/json",
@@ -63,7 +63,7 @@
 //   token = JSON.parse(localStorage.getItem("user")).AccessToken;
 //   console.log(token);
 //   const res = await fetch(
-//     "https://recoa-api.herokuapp.com/api/auth/createinvestor",
+//     "https://taximania-api.onrender.com/api/auth/createinvestor",
 //     {
 //       method: "POST",
 //       headers: {

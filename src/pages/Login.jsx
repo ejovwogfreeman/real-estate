@@ -16,7 +16,7 @@ const Login = () => {
 
   useEffect(() => {
     axios
-      .get("https://recoa-api.herokuapp.com/api/auth/investors", (res) => {
+      .get("https://taximania-api.onrender.com/api/auth/investors", (res) => {
         res.json();
       })
       .then((data) => setInvestors(data.data.investors));
@@ -32,7 +32,7 @@ const Login = () => {
     setLoading(true);
     e.preventDefault();
     axios
-      .post("https://recoa-api.herokuapp.com/api/auth/investorlogin", form, {
+      .post("https://taximania-api.onrender.com/api/auth/investorlogin", form, {
         headers: {
           "Content-Type": "application/json",
           Accept: "applicatioon/json",

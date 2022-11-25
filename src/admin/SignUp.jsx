@@ -48,7 +48,7 @@ const Signup = () => {
       return setLoading(false);
     }
     axios
-      .post("https://recoa-api.herokuapp.com/api/auth/register", user, {
+      .post("https://taximania-api.onrender.com/api/auth/register", user, {
         headers: {
           "Content-Type": "application/json",
           Accept: "applicatioon/json",

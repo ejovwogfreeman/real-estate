@@ -63,7 +63,7 @@ const WaitList = () => {
     console.log(waitlist);
     axios
       .post(
-        `https://recoa-api.herokuapp.com/api/property/joinwaitlist/${id}`,
+        `https://taximania-api.onrender.com/api/property/joinwaitlist/${id}`,
         waitlist,
         {
           headers: {
