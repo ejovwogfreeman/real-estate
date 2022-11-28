@@ -36,9 +36,25 @@ const Tables = () => {
   const handleAdd3 = () => {
     setAdd3(!add3);
   };
+
+  let timeDay = new Date().getHours();
+  let timeGreet = null;
+  if (timeDay < 12) {
+    timeGreet = "Good Morinng";
+  } else if (timeDay < 16) {
+    timeGreet = "Good Afternoon";
+  } else if (timeDay < 21) {
+    timeGreet = "Good Evening";
+  } else {
+    timeGreet = "Good Night";
+  }
+
   return (
     <div className="table-container">
-      <h1 className="h4 mb-3">Site Administration</h1>
+      <span className="mb-3 d-block">
+        <h1 className="h4">Site Administration</h1>
+        <small className="text-muted">Hello Admin, {timeGreet}</small>
+      </span>
       <div className="table">
         <div className="tab-heading">Tables</div>
         <ul>

@@ -1,32 +1,11 @@
-// import React from "react";
-// import "./Modal.css";
-// import { AiOutlineClose } from "react-icons/ai";
-
-// const AddUnit = ({ handleAdd3 }) => {
-//   return (
-//     <div className="modal-cont">
-//       <div className="modal-cont-details">
-//         <div className="top">
-//           <h1>Add Unit</h1>
-//           <span>
-//             <AiOutlineClose onClick={handleAdd3} className="icon" />
-//           </span>
-//         </div>
-//         <hr />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default AddUnit;
-
 import React, { useState, useEffect } from "react";
 import "./Modal.css";
 import { AiOutlineClose } from "react-icons/ai";
 import { ToastifyContext } from "../../context/ToastifyContext";
 import axios from "axios";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
-const AddUnits = ({ handleAdd3 }) => {
+const EditUnit = ({ handleAdd2 }) => {
   const [ToastifyState, setToastifyState] = React.useContext(ToastifyContext);
   const [loading, setLoading] = useState(false);
   const [property, setProperty] = useState([]);
@@ -40,7 +19,6 @@ const AddUnits = ({ handleAdd3 }) => {
   const handleImage = (e) => {
     setImage(e.target.files[0]);
   };
-
   useEffect(() => {
     axios
       .get("https://taximania-api.onrender.com/api/property", (res) => {
@@ -48,6 +26,30 @@ const AddUnits = ({ handleAdd3 }) => {
       })
       .then((data) => setProperty(data.data.properties));
   });
+
+  const params = useParams();
+  const navigate = useNavigate();
+
+  const [unit, setUnit] = useState({});
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://taximania-api.onrender.com/api/property/singleunit/${params.id}`,
+        (res) => {
+          res.json();
+        }
+      )
+      .then((data) => {
+        setUnit(data.data.unit);
+        setPropertyName(data.data.unit.propertyId);
+        setUnitName(data.data.unit.name);
+        setDescription(data.data.unit.description);
+        setPrice(data.data.unit.price);
+        setCount(data.data.unit.count);
+        setImage(data.data.unit.imagename);
+      });
+  }, [params.id]);
 
   const getToken = () => {
     try {
@@ -73,21 +75,24 @@ const AddUnits = ({ handleAdd3 }) => {
     formData.append("count", count);
     formData.append("file", image);
     axios
-      .post("https://taximania-api.onrender.com/api/property/unit/", formData, {
-        headers: {
-          Accept: "application/json",
-          Authorization: "Bearer " + AccessToken,
-        },
-      })
+      .patch(
+        `https://taximania-api.onrender.com/api/property/unit/${params.id}`,
+        formData,
+        {
+          headers: {
+            Accept: "application/json",
+            Authorization: "Bearer " + AccessToken,
+          },
+        }
+      )
       .then((res) => {
         setLoading(false);
         setToastifyState({
           ...ToastifyState,
-          message: "Unit Created Successfully",
+          message: "Unit Updated Successfully",
           variant: "success",
           open: true,
         });
-        handleAdd3();
         localStorage.setItem("unit-detail", JSON.stringify(res.data));
       })
       .catch((err) => {
@@ -105,16 +110,16 @@ const AddUnits = ({ handleAdd3 }) => {
   return (
     <div className="modal-cont">
       <form
-        className="modal-cont-details modal-comp-form mt-5"
+        className="modal-cont-details modal-comp-form mt-5 p-3"
         onSubmit={handleSubmit}
       >
         <div className="top">
-          <h1 className="h6">Add Unit</h1>
+          <h1 className="h6">Edit Unit</h1>
           <span>
-            <AiOutlineClose onClick={handleAdd3} className="icon" />
+            <AiOutlineClose onClick={() => navigate(-1)} className="icon" />
           </span>
         </div>
-        <hr />
+        <hr className="mb-3" />
         <div>
           <select
             id=""
@@ -193,4 +198,4 @@ const AddUnits = ({ handleAdd3 }) => {
   );
 };
 
-export default AddUnits;
+export default EditUnit;

@@ -28,6 +28,9 @@ import HomeComp from "./pages/HomeComp";
 // import CreateInvestor from "./pages/CreateInvestor";
 // import WaitList from "./pages/WaitLisit2";
 import WaitList from "./pages/WaitList";
+import EditProperty from "./admin/Modals/EditProperty";
+import UnitsUnderProperty from "./admin/Modals/UnitsUnderProperty";
+import EditUnit from "./admin/Modals/EditUnit";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -92,6 +95,12 @@ function App() {
                 <Route path="/admin_verify" element={<Verify />} />
                 <Route path="/admin_signin" element={<Signin />} />
                 <Route path="/admin_dashboard" element={<Dashboard />} />
+                <Route path="/edit_property/:id" element={<EditProperty />} />
+                <Route path="/edit_unit/:id" element={<EditUnit />} />
+                <Route
+                  path="/property_unit/:id"
+                  element={<UnitsUnderProperty />}
+                />
               </Routes>
             </BrowserRouter>
           </div>

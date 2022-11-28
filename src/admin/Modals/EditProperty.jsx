@@ -1,15 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Modal.css";
 import { AiOutlineClose } from "react-icons/ai";
 import { ToastifyContext } from "../../context/ToastifyContext";
 import axios from "axios";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
-const AddProperty = ({ handleAdd2 }) => {
+const EditProperty = ({ handleAdd2 }) => {
   const [ToastifyState, setToastifyState] = React.useContext(ToastifyContext);
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [status, setStatus] = useState("waitlist");
+
+  const params = useParams();
+
+  const [prop, setProp] = useState({});
+  useEffect(() => {
+    axios
+      .get(
+        `https://taximania-api.onrender.com/api/property/${params.id}`,
+        (res) => {
+          res.json();
+        }
+      )
+      .then((data) => {
+        setProp(data.data.property);
+        setName(data.data.property.name);
+        setLocation(data.data.property.location);
+        setStatus(data.data.property.status);
+      });
+  }, [params.id]);
 
   const getToken = () => {
     try {
@@ -29,29 +49,37 @@ const AddProperty = ({ handleAdd2 }) => {
     status: status,
   };
 
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
+    console.log(property);
     e.preventDefault();
     setLoading(true);
     axios
-      .post("https://taximania-api.onrender.com/api/property/", property, {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "applicatioon/json",
-          Authorization: "Bearer " + AccessToken,
-        },
-      })
+      .patch(
+        `https://taximania-api.onrender.com/api/property/${params.id}`,
+        property,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "applicatioon/json",
+            Authorization: "Bearer " + AccessToken,
+          },
+        }
+      )
       .then((res) => {
+        console.log(res);
         setLoading(false);
         setToastifyState({
           ...ToastifyState,
-          message: "Property Created Successfully",
+          message: "Property Updated Successfully",
           variant: "success",
           open: true,
         });
-        handleAdd2();
+        navigate("/admin_dashboard");
         localStorage.setItem("property-detail", JSON.stringify(res.data));
       })
       .catch((err) => {
+        console.log(err);
         setLoading(false);
         setToastifyState({
           ...ToastifyState,
@@ -65,16 +93,16 @@ const AddProperty = ({ handleAdd2 }) => {
   return (
     <div className="modal-cont">
       <form
-        className="modal-cont-details modal-comp-form"
+        className="modal-cont-details modal-comp-form p-3 pt-4"
         onSubmit={handleSubmit}
       >
         <div className="top">
-          <h1 className="h6">Add Property</h1>
-          <span>
-            <AiOutlineClose onClick={handleAdd2} className="icon" />
-          </span>
+          <h1 className="h3">Edit Property</h1>
+          <Link to="/admin_dashboard">
+            <AiOutlineClose className="icon" />
+          </Link>
         </div>
-        <hr />
+        <hr className="mb-3" />
         <div>
           <label>Property Name</label>
           <input
@@ -107,7 +135,7 @@ const AddProperty = ({ handleAdd2 }) => {
         </div>
         <div>
           <button disabled={loading}>
-            {loading ? "LOADING..." : "CREATE PROPERTY"}
+            {loading ? "LOADING..." : "UPDATE PROPERTY"}
           </button>
         </div>
       </form>
@@ -115,4 +143,4 @@ const AddProperty = ({ handleAdd2 }) => {
   );
 };
 
-export default AddProperty;
+export default EditProperty;

@@ -3,22 +3,40 @@ import "./Modal.css";
 import { AiOutlineClose } from "react-icons/ai";
 import axios from "axios";
 import { ToastifyContext } from "../../context/ToastifyContext";
-// import { useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { BsTrash, BsPencilSquare } from "react-icons/bs";
-import { Link } from "react-router-dom";
 
-const PropertyModal = ({ handleChange2 }) => {
+const UnitsUnderProperty = ({ handleChange3 }) => {
   const [ToastifyState, setToastifyState] = React.useContext(ToastifyContext);
   const [loading, setLoading] = useState(false);
-  const [property, setProperty] = useState([]);
+  const [unit, setUnit] = useState([]);
+  const [prop, setProp] = useState([]);
+
+  const params = useParams();
 
   useEffect(() => {
     axios
-      .get("https://taximania-api.onrender.com/api/property", (res) => {
-        res.json();
-      })
-      .then((data) => setProperty(data.data.properties));
+      .get(
+        `https://taximania-api.onrender.com/api/property/unit/${params.id}`,
+        (res) => {
+          res.json();
+        }
+      )
+      .then((data) => setUnit(data.data.units));
   });
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://taximania-api.onrender.com/api/property/${params.id}`,
+        (res) => {
+          res.json();
+        }
+      )
+      .then((data) => {
+        setProp(data.data.property);
+      });
+  }, [params.id]);
 
   const getToken = () => {
     try {
@@ -33,11 +51,11 @@ const PropertyModal = ({ handleChange2 }) => {
   const handleDelete = (id) => {
     setLoading(true);
     const AccessToken = getToken();
-    const deleteProp = property.filter((x) => x.id == id);
+    const deleteProp = unit.filter((x) => x.id == id);
     const deletePropId = deleteProp[0].id;
     axios
       .delete(
-        `https://taximania-api.onrender.com/api/property/${deletePropId}`,
+        `https://taximania-api.onrender.com/api/property/unit/delete/${deletePropId}`,
         {
           headers: {
             Authorization: `Bearer ${AccessToken}`,
@@ -48,12 +66,12 @@ const PropertyModal = ({ handleChange2 }) => {
         console.log(res);
         setToastifyState({
           ...ToastifyState,
-          message: "Property Deleted successfully",
+          message: "Unit Deleted successfully",
           variant: "success",
           open: true,
         });
         setLoading(false);
-        handleChange2();
+        handleChange3();
       })
       .catch((err) => {
         setLoading(false);
@@ -68,26 +86,26 @@ const PropertyModal = ({ handleChange2 }) => {
 
   return (
     <div className="modal-cont">
-      <div className="modal-cont-details">
+      <div className="modal-cont-details p-3">
         <div className="top">
-          <h1 className="h6">All Properties</h1>
-          <span>
-            <AiOutlineClose onClick={handleChange2} className="icon" />
-          </span>
+          <h1 className="h6">All Units For {prop.name}</h1>
+          <Link to="/admin_dashboard">
+            <AiOutlineClose className="icon" />
+          </Link>
         </div>
-        <hr />
-        {property.length > 0 ? (
+        <hr className="mt-2 mb-1" />
+        {unit.length > 0 ? (
           <>
-            {property.map((x) => {
+            {unit.map((x) => {
               return (
                 <div
                   key={x.id}
-                  className="d-flex align-items-center justify-content-between"
+                  className="d-flex align-items-center justify-content-between py-2 border-bottom"
                 >
                   <p>{x.name}</p>
                   <span>
                     <Link
-                      to={`/edit_property/${x.id}`}
+                      to={`/edit_unit/${x.id}`}
                       className="btn btn-outline-secondary me-2"
                     >
                       <BsPencilSquare />
@@ -107,11 +125,11 @@ const PropertyModal = ({ handleChange2 }) => {
             })}
           </>
         ) : (
-          <p>Loading Properties...</p>
+          <p className="py-2">Loading Units...</p>
         )}
       </div>
     </div>
   );
 };
 
-export default PropertyModal;
+export default UnitsUnderProperty;

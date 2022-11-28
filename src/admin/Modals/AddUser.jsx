@@ -86,7 +86,7 @@ const AddUser = ({ handleAdd1 }) => {
         onSubmit={handleSubmit}
       >
         <div className="top">
-          <h1>Add Investor</h1>
+          <h1 className="h6">Add Investor</h1>
           <span>
             <AiOutlineClose onClick={handleAdd1} className="icon" />
           </span>

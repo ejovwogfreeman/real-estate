@@ -4,6 +4,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import axios from "axios";
 import { ToastifyContext } from "../../context/ToastifyContext";
 // import { useNavigate } from "react-router-dom";
+import { BsTrash } from "react-icons/bs";
 
 const UserModal = ({ handleChange1 }) => {
   const [ToastifyState, setToastifyState] = React.useContext(ToastifyContext);
@@ -23,7 +24,7 @@ const UserModal = ({ handleChange1 }) => {
       let token = JSON.parse(localStorage.getItem("admin-detail")).AccessToken;
       return token;
     } catch (err) {
-      console.elog("no token");
+      console.log("no token");
       return null;
     }
   };
@@ -31,11 +32,12 @@ const UserModal = ({ handleChange1 }) => {
   const handleDelete = (id) => {
     setLoading(true);
     const AccessToken = getToken();
-    const deleteProp = investors.filter((x) => x.id == id);
-    const deletePropId = deleteProp[0].id;
+    const InvestorId = investors.filter((x) => x.id == id);
+    const deleteInvestorId = InvestorId[0].id;
+    console.log(deleteInvestorId);
     axios
       .delete(
-        `https://taximania-api.onrender.com/api/investors/${deletePropId}`,
+        `https://taximania-api.onrender.com/api/auth/investor/${deleteInvestorId}`,
         {
           headers: {
             Authorization: `Bearer ${AccessToken}`,
@@ -46,7 +48,7 @@ const UserModal = ({ handleChange1 }) => {
         console.log(res);
         setToastifyState({
           ...ToastifyState,
-          message: "Investors Deleted successfully",
+          message: "Investor Deleted successfully",
           variant: "success",
           open: true,
         });
@@ -54,6 +56,7 @@ const UserModal = ({ handleChange1 }) => {
         handleChange1();
       })
       .catch((err) => {
+        console.log(err);
         setLoading(false);
         setToastifyState({
           ...ToastifyState,
@@ -68,13 +71,13 @@ const UserModal = ({ handleChange1 }) => {
     <div className="modal-cont">
       <div className="modal-cont-details">
         <div className="top">
-          <h1>All Investors</h1>
+          <h1 className="h6">All Investors</h1>
           <span>
             <AiOutlineClose onClick={handleChange1} className="icon" />
           </span>
         </div>
         <hr />
-        {investors ? (
+        {investors.length > 0 ? (
           <>
             {investors.map((x) => {
               return (
@@ -90,14 +93,14 @@ const UserModal = ({ handleChange1 }) => {
                       handleDelete(x.id);
                     }}
                   >
-                    {loading ? "LOADING" : "DELETE"}
+                    {loading ? "LOADING" : <BsTrash />}
                   </button>
                 </div>
               );
             })}
           </>
         ) : (
-          <p>There are no Investor yet</p>
+          <p>Loading Investors...</p>
         )}
       </div>
     </div>

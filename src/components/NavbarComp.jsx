@@ -14,6 +14,7 @@ const NavbarComp = ({ style }) => {
   const [UserState, setUserState] = React.useContext(UserContext);
   const [change, setChange] = useState(false);
   const [property, setProperty] = useState([]);
+  const [investors, setInvestors] = useState([]);
 
   useEffect(() => {
     axios
@@ -21,6 +22,14 @@ const NavbarComp = ({ style }) => {
         res.json();
       })
       .then((data) => setProperty(data.data.properties));
+  });
+
+  useEffect(() => {
+    axios
+      .get("https://taximania-api.onrender.com/api/auth/investors", (res) => {
+        res.json();
+      })
+      .then((data) => setInvestors(data.data.investors));
   });
 
   useEffect(() => {
@@ -105,7 +114,14 @@ const NavbarComp = ({ style }) => {
                   hide2 ? "dropdown-details show1" : "dropdown-details hide1"
                 }
               >
-                {
+                {investors.map((x) => {
+                  return (
+                    <li key={x.id}>
+                      <Link to={"/investor_login"}>{x.username}</Link>
+                    </li>
+                  );
+                })}
+                {/* {
                   <li>
                     <a href="">NDDC</a>
                   </li>
@@ -115,7 +131,7 @@ const NavbarComp = ({ style }) => {
                 </li>
                 <li>
                   <a href="">NPDC</a>
-                </li>
+                </li> */}
               </ul>
             </li>
           </ul>
