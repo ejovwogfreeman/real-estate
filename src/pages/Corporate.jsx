@@ -5,7 +5,7 @@ import NavbarComp from "../components/NavbarComp";
 
 const Corporate = () => {
   const style = {
-    background: "black",
+    background: "rgb(2, 86, 144)",
   };
   return (
     <>

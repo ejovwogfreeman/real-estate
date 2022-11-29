@@ -124,16 +124,23 @@ const AddUnits = ({ handleAdd3 }) => {
             required
             style={{ width: "100%" }}
           >
-            {property.map((x) => {
-              return (
-                <option
-                  value={`${x.status === "live" ? x.id : null}`}
-                  key={x.id}
-                >
-                  {x.status === "live" ? x.name : "On Wait List"}
-                </option>
-              );
-            })}
+            {property.length > 0 ? (
+              <>
+                {" "}
+                {property.map((x) => {
+                  return (
+                    <option
+                      value={`${x.status === "live" ? x.id : null}`}
+                      key={x.id}
+                    >
+                      {x.status === "live" ? x.name : "On Wait List"}
+                    </option>
+                  );
+                })}
+              </>
+            ) : (
+              <option>Loading Properties...</option>
+            )}
           </select>
         </div>
         <div>

@@ -5,6 +5,7 @@ import axios from "axios";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
+import logo from "../images/recoalogo.png";
 
 const NavbarComp = ({ style }) => {
   const [hide1, setHide1] = useState(false);
@@ -52,7 +53,7 @@ const NavbarComp = ({ style }) => {
         <div className="main-nav">
           <div className="logo">
             <Link to="/">
-              <h1>RECOA COMMUTITIES</h1>
+              <img src={logo} alt="" style={{ width: "80px" }} />
             </Link>
           </div>
           <ul className="links">
@@ -78,31 +79,33 @@ const NavbarComp = ({ style }) => {
                   hide1 ? "dropdown-details show1" : "dropdown-details hide1"
                 }
               >
-                {property.map((x) => {
-                  return (
-                    <li key={x.id}>
-                      <Link
-                        to={
-                          x.status === "live"
-                            ? "/investor_login"
-                            : "/join_waitlist/" + x.id
-                        }
-                      >
-                        {x.name}
-                      </Link>
-                    </li>
-                  );
-                })}
-                {/* <li>
-                  <Link to="/investor_login">Login</Link>
-                </li>
-                <li>
-                  <Link to="/join_waitlist">Join Wait List</Link>
-                </li> */}
+                {property.length > 0 ? (
+                  <>
+                    {" "}
+                    {property.map((x) => {
+                      return (
+                        <li key={x.id}>
+                          <Link
+                            to={
+                              x.status === "live"
+                                ? "/investor_login"
+                                : "/join_waitlist/" + x.id
+                            }
+                          >
+                            {x.name}
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </>
+                ) : (
+                  <li>
+                    <Link to="/">Loading properties...</Link>
+                  </li>
+                )}
               </ul>
             </li>
             <li className="dropdown">
-              {/* <Link to="/corporate-tenant">Corporate Tenants</Link> */}
               <p
                 style={{ color: "white", marginLeft: "30px" }}
                 onClick={() => setHide2(!hide2)}
@@ -114,24 +117,22 @@ const NavbarComp = ({ style }) => {
                   hide2 ? "dropdown-details show1" : "dropdown-details hide1"
                 }
               >
-                {investors.map((x) => {
-                  return (
-                    <li key={x.id}>
-                      <Link to={"/investor_login"}>{x.username}</Link>
-                    </li>
-                  );
-                })}
-                {/* {
+                {investors.length > 0 ? (
+                  <>
+                    {" "}
+                    {investors.map((x) => {
+                      return (
+                        <li key={x.id}>
+                          <Link to={"/investor_login"}>{x.username}</Link>
+                        </li>
+                      );
+                    })}
+                  </>
+                ) : (
                   <li>
-                    <a href="">NDDC</a>
+                    <Link to="/">Loading Investors...</Link>
                   </li>
-                }
-                <li>
-                  <a href="">Naijacat</a>
-                </li>
-                <li>
-                  <a href="">NPDC</a>
-                </li> */}
+                )}
               </ul>
             </li>
           </ul>

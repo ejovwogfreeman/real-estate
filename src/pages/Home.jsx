@@ -19,27 +19,15 @@ import car_image3 from "../images/Rectangle 49 (4).jpg";
 import car_image4 from "../images/Rectangle 49 (3).jpg";
 
 const Home = () => {
-  // const [selectArea, setSelectArea] = useState("Ajah LA, Nigeria");
   const [select, setSelect] = useState("Ajah LA, Nigeria");
 
-  // const style = {
-  //   backgroundColor: {}
-  // };
   return (
     <>
       <NavbarComp />
-
-      {/* Section 1 */}
       <ScrollToTop />
 
       <div className="h-screen relative ">
-        <div
-          className="w-full h-full absolute  contrast-[0.4] background"
-          // style={{
-          //   backgroundImage: `url("${Background_image}")`,
-          //   backgroundSize: "cover",
-          // }}
-        ></div>
+        <div className="w-full h-full absolute  contrast-[0.4] background"></div>
         <div className="w-full h-full z-10 relative flex flex-row justify-center items-center">
           <div className="content flex flex-col items-center -mt-20">
             <div className="text-5xl mb-8 font-extrabold text-white">

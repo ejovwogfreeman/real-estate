@@ -31,6 +31,7 @@ import WaitList from "./pages/WaitList";
 import EditProperty from "./admin/Modals/EditProperty";
 import UnitsUnderProperty from "./admin/Modals/UnitsUnderProperty";
 import EditUnit from "./admin/Modals/EditUnit";
+import FindApartmentD from "./pages/FindApartmentD";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -65,12 +66,21 @@ function App() {
 
               <Routes>
                 <Route exact path="/" element={<HomeComp />} />
-                {/* <Route exact path="/login" element={<Login />} /> */}
                 <Route exact path="/about_us" element={<Aboutus />} />
                 <Route
                   exact
                   path="/find_apartment/search"
                   element={<FindApartmentSearch />}
+                />
+                <Route
+                  exact
+                  path="/find_apartment/detail/:id"
+                  element={
+                    <FindApartmentD
+                      closeModal={closeModal}
+                      openModal={openModal}
+                    />
+                  }
                 />
                 <Route
                   exact

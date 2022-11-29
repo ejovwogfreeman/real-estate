@@ -76,7 +76,7 @@ const EditProperty = ({ handleAdd2 }) => {
           open: true,
         });
         navigate("/admin_dashboard");
-        localStorage.setItem("property-detail", JSON.stringify(res.data));
+        localStorage.setItem("updated-property-detail", JSON.stringify(res));
       })
       .catch((err) => {
         console.log(err);

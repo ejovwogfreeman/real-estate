@@ -76,7 +76,7 @@ const EditUnit = ({ handleAdd2 }) => {
     formData.append("file", image);
     axios
       .patch(
-        `https://taximania-api.onrender.com/api/property/unit/${params.id}`,
+        `https://taximania-api.onrender.com/api/property/unit/update/${params.id}`,
         formData,
         {
           headers: {
@@ -86,6 +86,7 @@ const EditUnit = ({ handleAdd2 }) => {
         }
       )
       .then((res) => {
+        console.log(res);
         setLoading(false);
         setToastifyState({
           ...ToastifyState,
@@ -93,7 +94,8 @@ const EditUnit = ({ handleAdd2 }) => {
           variant: "success",
           open: true,
         });
-        localStorage.setItem("unit-detail", JSON.stringify(res.data));
+        localStorage.setItem("updated-unit-detail", JSON.stringify(res));
+        navigate("/admin_dashboard");
       })
       .catch((err) => {
         console.log(err);
@@ -190,7 +192,7 @@ const EditUnit = ({ handleAdd2 }) => {
         </div>
         <div>
           <button disabled={loading}>
-            {loading ? "LOADING..." : "ADD UNIT"}
+            {loading ? "LOADING..." : "UPDATE UNIT"}
           </button>
         </div>
       </form>

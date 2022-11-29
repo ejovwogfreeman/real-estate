@@ -3,7 +3,7 @@ import "./Modal.css";
 import { AiOutlineClose } from "react-icons/ai";
 import axios from "axios";
 import { ToastifyContext } from "../../context/ToastifyContext";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { BsTrash, BsPencilSquare } from "react-icons/bs";
 
 const UnitsUnderProperty = ({ handleChange3 }) => {
@@ -13,6 +13,7 @@ const UnitsUnderProperty = ({ handleChange3 }) => {
   const [prop, setProp] = useState([]);
 
   const params = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -71,7 +72,8 @@ const UnitsUnderProperty = ({ handleChange3 }) => {
           open: true,
         });
         setLoading(false);
-        handleChange3();
+        console.log("unit deleted successfully");
+        navigate("/admin_dashboard");
       })
       .catch((err) => {
         setLoading(false);
@@ -104,12 +106,12 @@ const UnitsUnderProperty = ({ handleChange3 }) => {
                 >
                   <p>{x.name}</p>
                   <span>
-                    <Link
+                    {/* <Link
                       to={`/edit_unit/${x.id}`}
                       className="btn btn-outline-secondary me-2"
                     >
                       <BsPencilSquare />
-                    </Link>
+                    </Link> */}
                     <button
                       disabled={loading}
                       className="btn btn-outline-danger"

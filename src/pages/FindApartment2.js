@@ -14,7 +14,7 @@ import NavbarComp from "../components/NavbarComp";
 
 const FindApartment = () => {
   const style = {
-    background: "black",
+    background: "rgb(2, 86, 144)",
   };
   return (
     <>
@@ -25,7 +25,7 @@ const FindApartment = () => {
           <div className="map">
             <MapSearch />
           </div>
-          <div className="img">
+          {/* <div className="img">
             <SearchSideBar
               images={[
                 car_image1,
@@ -36,7 +36,7 @@ const FindApartment = () => {
                 car_image6,
               ]}
             />
-          </div>
+          </div> */}
         </div>
       </div>
       <Footer />

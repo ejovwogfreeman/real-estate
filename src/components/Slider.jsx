@@ -2,10 +2,15 @@ import React from "react";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import car_image1 from "../images/Rectangle 49 (6).jpg";
-import car_image2 from "../images/Rectangle 49 (7).jpg";
-import car_image3 from "../images/Rectangle 49 (4).jpg";
-import car_image4 from "../images/Rectangle 49 (3).jpg";
+// import car_image1 from "../images/Rectangle 49 (6).jpg";
+// import car_image2 from "../images/Rectangle 49 (7).jpg";
+// import car_image3 from "../images/Rectangle 49 (4).jpg";
+// import car_image4 from "../images/Rectangle 49 (3).jpg";
+import img1 from "../RecoaImages/Pic 001 - Home Page Image - D.png";
+import img2 from "../RecoaImages/Pic 002 - Victoria Island.png";
+import img3 from "../RecoaImages/Pic 003 - Lekki Orchid District.jpg";
+import img5 from "../RecoaImages/Pic 005 - Ikoyi Main.png";
+import img6 from "../RecoaImages/Pic 006 - Banana Island.png";
 import "./Slider.css";
 import { Link } from "react-router-dom";
 
@@ -35,24 +40,29 @@ const Slider = () => {
       </h1>
       <OwlCarousel className="owl-theme" {...options}>
         <div class="item">
-          <img src={car_image1} alt="" />
+          <img src={img2} alt="" />
           <Link to="/find_apartment" className="bg"></Link>
-          <p className="h3-lg h4">Lekki Phase 1</p>
+          <p className="h3-lg h4">Victoria Island</p>
         </div>
         <div class="item">
-          <img src={car_image2} alt="" />
+          <img src={img3} alt="" />
           <Link to="/find_apartment" className="bg"></Link>
           <p className="h3-lg h4">Lekki Orchid District</p>
         </div>
         <div class="item">
-          <img src={car_image3} alt="" />
+          <img src={img5} alt="" />
           <Link to="/find_apartment" className="bg"></Link>
-          <p className="h3-lg h4">Epe New Town</p>
+          <p className="h3-lg h4">Ikoyi Main</p>
         </div>
         <div class="item">
-          <img src={car_image4} alt="" />
+          <img src={img6} alt="" />
           <Link to="/find_apartment" className="bg"></Link>
-          <p className="h3-lg h4">Lekki Phase 2</p>
+          <p className="h3-lg h4">Banana Island</p>
+        </div>
+        <div class="item">
+          <img src={img1} alt="" />
+          <Link to="/find_apartment" className="bg"></Link>
+          <p className="h3-lg h4">Lekki Free Zone Axis</p>
         </div>
       </OwlCarousel>
       ;

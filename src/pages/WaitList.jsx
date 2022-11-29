@@ -98,13 +98,13 @@ const WaitList = () => {
   };
 
   const style = {
-    background: "black",
+    background: "rgb(2, 86, 144)",
   };
 
   return (
     <>
       <NavbarComp style={style} />
-      <div className="container">
+      <div className="container" style={{ paddingTop: "120px" }}>
         <ScrollToTop />
         <form action="" onSubmit={handleSubmit} className="join-form mb-4">
           <h2 className="h5 mb-4">JOIN WAIT LIST</h2>

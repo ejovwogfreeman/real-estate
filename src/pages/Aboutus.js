@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 
 const Aboutus = () => {
   const style = {
-    background: "black",
+    background: "rgb(2, 86, 144)",
   };
   return (
     <>

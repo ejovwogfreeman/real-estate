@@ -1,10 +1,10 @@
 .top-space {
-  padding-top: 100px;
+  padding-top: 120px;
 }
 
 .login-form {
   padding-top: 30px;
-  background-color: rgba(256, 256, 256, 0.5);
+  background-color: rgba(256, 256, 256, 0.3);
 }
 
 .login-form select {
@@ -13,7 +13,8 @@
 }
 
 .login-form button {
-  background-color: black;
+  background-color: rgb(2, 86, 144);
+  border: 1px solid rgb(2, 86, 144);
   color: white;
 }
 
@@ -47,8 +48,8 @@
 }
 
 .select-form button {
-  background-color: rgb(36, 142, 212);
-  border-color: rgb(36, 142, 212);
+  background-color: rgb(2, 86, 144);
+  border: 1px solid rgb(2, 86, 144);
   color: white;
   padding: 10px;
   border-radius: 0px;
@@ -101,19 +102,19 @@
 }
 
 .about-container {
-  padding: 100px 5% 10px;
+  padding: 120px 5% 10px;
   text-align: justify;
 }
 
 .find-container {
-  padding: 100px 5% 20px;
+  padding: 105px 5px 5px;
 }
 .find-container .cont {
   display: flex;
 }
 
 .find-container .cont .map {
-  flex: 1;
+  flex: 3;
   height: 500px;
 }
 .find-container .cont .img {
@@ -155,4 +156,8 @@
   .find-container .cont .map {
     height: 300px;
   }
+}
+
+.nohover:hover {
+  color: white;
 }

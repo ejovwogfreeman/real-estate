@@ -2,10 +2,13 @@ import React from "react";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import car_image1 from "../images/Rectangle 49 (6).jpg";
-import car_image2 from "../images/Rectangle 49 (7).jpg";
-import car_image3 from "../images/Rectangle 49 (4).jpg";
-import car_image4 from "../images/Rectangle 49 (3).jpg";
+// import car_image1 from "../images/Rectangle 49 (6).jpg";
+// import car_image2 from "../images/Rectangle 49 (7).jpg";
+// import car_image3 from "../images/Rectangle 49 (4).jpg";
+// import car_image4 from "../images/Rectangle 49 (3).jpg";
+import img7 from "../RecoaImages/Pic 001 - Home Page Image - D.png";
+import img8 from "../RecoaImages/Pic 008 - Recoa Square Main Shot.png";
+import img9 from "../RecoaImages/Pic 009 - Recoa Park.jpg";
 import "./Slider.css";
 import { Link } from "react-router-dom";
 
@@ -34,24 +37,24 @@ const Slider2 = () => {
       </h1>
       <OwlCarousel className="owl-theme" {...options}>
         <div class="item">
-          <img src={car_image1} alt="" />
+          <img src={img8} alt="" />
           <Link to="/find_apartment" className="bg"></Link>
-          <p className="h3-lg h4">Lekki Phase 1</p>
+          <p className="h3-lg h4">Recoa Square</p>
         </div>
         <div class="item">
-          <img src={car_image2} alt="" />
+          <img src={img9} alt="" />
           <Link to="/find_apartment" className="bg"></Link>
-          <p className="h3-lg h4">Lekki Orchid District</p>
+          <p className="h3-lg h4">Recoa Park</p>
         </div>
         <div class="item">
-          <img src={car_image3} alt="" />
+          <img src={img7} alt="" />
           <Link to="/find_apartment" className="bg"></Link>
-          <p className="h3-lg h4">Epe New Town</p>
+          <p className="h3-lg h4">Recoa Lakes</p>
         </div>
         <div class="item">
-          <img src={car_image4} alt="" />
+          <img src={img8} alt="" />
           <Link to="/find_apartment" className="bg"></Link>
-          <p className="h3-lg h4">Lekki Phase 2</p>
+          <p className="h3-lg h4">Recoa Square</p>
         </div>
       </OwlCarousel>
       ;
