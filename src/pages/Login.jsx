@@ -47,7 +47,7 @@ const Login = () => {
           variant: "success",
           open: true,
         });
-        navigate("/find_apartment/detail");
+        navigate("/find_apartment");
         localStorage.setItem("investor-detail", JSON.stringify(res.data));
       })
       .catch((err) => {
