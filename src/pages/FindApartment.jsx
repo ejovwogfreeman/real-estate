@@ -36,9 +36,6 @@ const FindApartment = () => {
     background: "rgb(2, 86, 144)",
   };
 
-  property.sort((a, b) => status[a.status] - status[b.status]);
-
-  console.log(property);
   return (
     <>
       <NavbarComp style={style} />
@@ -57,7 +54,13 @@ const FindApartment = () => {
                 {" "}
                 {property.map((x) => {
                   return (
-                    <Link to={`/find_apartment/detail/${x.id}`} key={x.id}>
+                    <Link
+                      to={
+                        x.status === "live"
+                          ? "/find_apartment/detail/" + x.id
+                          : "/join_waitlist/" + x.id
+                      }
+                    >
                       <div
                         className="row m-0 mb-2 p-2 rounded"
                         style={{ background: "rgba(0,0,0,0.1)" }}
