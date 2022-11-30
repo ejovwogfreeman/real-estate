@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
 const Auth = () => {
-  let user = JSON.parse(sessionStorage.getItem("investor-detail"));
+  let user = JSON.parse(localStorage.getItem("investor-detail"));
   return user;
 };
 
