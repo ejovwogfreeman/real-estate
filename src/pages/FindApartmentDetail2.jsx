@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../css/Main.css";
 import side_image from "../images/Rectangle 71.png";
 import ScrollToTop from "../components/ScrollToTop";
@@ -13,46 +13,8 @@ import FindApartmentGrid from "../components/FindApartmentDetail/FindApartmentGr
 import CarouselApartment from "../components/FindApartmentDetail/CarouselApartment";
 // import Modal from '../components/FindApartmentDetail/Modal'
 import NavbarComp from "../components/NavbarComp";
-import axios from "axios";
-import { useParams } from "react-router-dom";
 
-function FindApartmentD({ closeModal, openModal }) {
-  //   const [ToastifyState, setToastifyState] = React.useContext(ToastifyContext);
-  const [loading, setLoading] = useState(false);
-  const [unit, setUnit] = useState([]);
-  const [prop, setProp] = useState([]);
-
-  const params = useParams();
-  //   const navigate = useNavigate();
-
-  useEffect(() => {
-    axios
-      .get(
-        `https://taximania-api.onrender.com/api/property/unit/${params.id}`,
-        (res) => {
-          res.json();
-        }
-      )
-      .then((data) => setUnit(data.data.units));
-  });
-
-  useEffect(() => {
-    axios
-      .get(
-        `https://taximania-api.onrender.com/api/property/${params.id}`,
-        (res) => {
-          res.json();
-        }
-      )
-      .then((data) => {
-        setProp(data.data.property);
-      });
-  }, [params.id]);
-
-  function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
-
+function FindApartmentDetail({ closeModal, openModal }) {
   const style = {
     background: "rgb(2, 86, 144)",
   };
@@ -81,6 +43,10 @@ function FindApartmentD({ closeModal, openModal }) {
                   car_image6,
                 ]}
               />
+            </div>
+
+            <div className="text-center mt-6 mb-5 underline text-green-800 text-xl">
+              Learn More
             </div>
           </div>
         </div>
@@ -122,30 +88,23 @@ function FindApartmentD({ closeModal, openModal }) {
 
         {/*  */}
 
-        <div className="my-5 row">
-          {unit.length > 0 ? (
-            <>
-              {unit.map((x) => {
-                return (
-                  <div className="col-4 p-2">
-                    <div key={x.id} className="bg-primary p-2 rounded">
-                      <img src={x.imagename} alt="" />
-                      <p>{x.name}</p>
-                      <p>{x.description}</p>
-                      <p>₦{numberWithCommas(x.price)}</p>
-                      <small>{x.unitstatus}</small>
-                    </div>
-                  </div>
-                );
-              })}
-            </>
-          ) : (
-            <p className="py-5 h3">Loading Units Under {prop.name}...</p>
-          )}
+        <div>
+          <FindApartmentGrid
+            closeModal={closeModal}
+            openModal={openModal}
+            images={[
+              car_image1,
+              car_image2,
+              car_image3,
+              car_image4,
+              car_image5,
+              car_image6,
+            ]}
+          />
         </div>
       </div>
     </>
   );
 }
 
-export default FindApartmentD;
+export default FindApartmentDetail;

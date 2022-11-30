@@ -13,16 +13,32 @@ const FindApartment = () => {
   const [property, setProperty] = useState([]);
   const params = useParams();
 
+  let status = {
+    live: 1,
+    waitlist: 2,
+  };
+
   useEffect(() => {
     axios
       .get("https://taximania-api.onrender.com/api/property", (res) => {
         res.json();
       })
-      .then((data) => setProperty(data.data.properties));
+      .then((data) =>
+        setProperty(
+          data.data.properties.sort(
+            (a, b) => status[a.status] - status[b.status]
+          )
+        )
+      );
   });
+
   const style = {
     background: "rgb(2, 86, 144)",
   };
+
+  property.sort((a, b) => status[a.status] - status[b.status]);
+
+  console.log(property);
   return (
     <>
       <NavbarComp style={style} />
@@ -41,18 +57,19 @@ const FindApartment = () => {
                 {" "}
                 {property.map((x) => {
                   return (
-                    <Link to={`/find_apartment/detail/${x.id}`}>
+                    <Link to={`/find_apartment/detail/${x.id}`} key={x.id}>
                       <div
                         className="row m-0 mb-2 p-2 rounded"
-                        key={x.id}
                         style={{ background: "rgba(0,0,0,0.1)" }}
                       >
                         <div className="col-4">
                           <img src={logo} alt="" style={{ width: "100%" }} />
                         </div>
                         <div className="col-8">
-                          <p className="h6">{x.name}</p>
-                          <p className="mb-2">{x.location}</p>
+                          <p className="h6">{x.name.toUpperCase()}</p>
+                          <small className="d-block mb-2 text-muted italic">
+                            {x.location}
+                          </small>
                           <small
                             className={
                               x.status === "live"

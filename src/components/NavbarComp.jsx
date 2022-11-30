@@ -105,7 +105,10 @@ const NavbarComp = ({ style }) => {
                 )}
               </ul>
             </li>
-            <li className="dropdown">
+            <li>
+              <Link to="/find_apartment/search">Corporate Tenants</Link>
+            </li>
+            {/* <li className="dropdown">
               <p
                 style={{ color: "white", marginLeft: "30px" }}
                 onClick={() => setHide2(!hide2)}
@@ -134,7 +137,7 @@ const NavbarComp = ({ style }) => {
                   </li>
                 )}
               </ul>
-            </li>
+            </li> */}
           </ul>
           <div className="right">
             <span className="mobileNav text-light">

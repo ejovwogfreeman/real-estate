@@ -14,7 +14,7 @@ import FindApartmentSearch from "./pages/FindApartmentSearch";
 import Login from "./pages/Login";
 import Aboutus from "./pages/Aboutus";
 import FindApartment from "./pages/FindApartment";
-import FindApartmentDetail from "./pages/FindApartmentDetail";
+import FindApartmentDetail2 from "./pages/FindApartmentDetail2";
 import Modal from "./components/FindApartmentDetail/Modal";
 import ToastifyComponent from "./context/ToastifyContext";
 import Corporate from "./pages/Corporate";
@@ -30,8 +30,11 @@ import HomeComp from "./pages/HomeComp";
 import WaitList from "./pages/WaitList";
 import EditProperty from "./admin/Modals/EditProperty";
 import UnitsUnderProperty from "./admin/Modals/UnitsUnderProperty";
-import EditUnit from "./admin/Modals/EditUnit";
-import FindApartmentD from "./pages/FindApartmentD";
+// import EditUnit from "./admin/Modals/EditUnit";
+import FindApartmentDetail from "./pages/FindApartmentDetail";
+import ReserveUnit from "./pages/ReserveUnit";
+import ReserveUnitSuccess from "./pages/ReserveUnitSuccess";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -76,7 +79,7 @@ function App() {
                   exact
                   path="/find_apartment/detail/:id"
                   element={
-                    <FindApartmentD
+                    <FindApartmentDetail
                       closeModal={closeModal}
                       openModal={openModal}
                     />
@@ -86,7 +89,7 @@ function App() {
                   exact
                   path="/find_apartment/detail"
                   element={
-                    <FindApartmentDetail
+                    <FindApartmentDetail2
                       closeModal={closeModal}
                       openModal={openModal}
                     />
@@ -101,12 +104,20 @@ function App() {
                 <Route exact path="/join_waitlist/" element={<WaitList />} />
                 <Route exact path="/join_waitlist/:id" element={<WaitList />} />
                 <Route exact path="/corporate-tenant" element={<Corporate />} />
+                <Route element={<ProtectedRoutes />}>
+                  <Route path="/reserve_unit/:id" element={<ReserveUnit />} />
+                </Route>
+                <Route element={<ProtectedRoutes />}>
+                  <Route
+                    path="/reserve_unit_success"
+                    element={<ReserveUnitSuccess />}
+                  />
+                </Route>
                 <Route path="/admin_signup" element={<Signup />} />
                 <Route path="/admin_verify" element={<Verify />} />
                 <Route path="/admin_signin" element={<Signin />} />
                 <Route path="/admin_dashboard" element={<Dashboard />} />
                 <Route path="/edit_property/:id" element={<EditProperty />} />
-                <Route path="/edit_unit/:id" element={<EditUnit />} />
                 <Route
                   path="/property_unit/:id"
                   element={<UnitsUnderProperty />}

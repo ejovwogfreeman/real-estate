@@ -48,6 +48,7 @@ const AddUser = ({ handleAdd1 }) => {
         }
       )
       .then((res) => {
+        console.log(res);
         console.log(res.data.message);
         setLoading(false);
         setToastifyState({
@@ -60,6 +61,7 @@ const AddUser = ({ handleAdd1 }) => {
         localStorage.setItem("investor-detail", JSON.stringify(res.data));
       })
       .catch((err) => {
+        console.log(err);
         if (err.response.data.message) {
           setLoading(false);
           setToastifyState({

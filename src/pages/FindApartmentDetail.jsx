@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../css/Main.css";
 import side_image from "../images/Rectangle 71.png";
 import ScrollToTop from "../components/ScrollToTop";
@@ -9,12 +9,62 @@ import car_image3 from "../images/Rectangle 69.jpg";
 import car_image4 from "../images/Rectangle 69 (1).jpg";
 import car_image5 from "../images/Rectangle 74.png";
 import car_image6 from "../images/Rectangle 69 (3).jpg";
-import FindApartmentGrid from "../components/FindApartmentDetail/FindApartmentGrid";
+// import FindApartmentGrid from "../components/FindApartmentDetail/FindApartmentGrid";
 import CarouselApartment from "../components/FindApartmentDetail/CarouselApartment";
 // import Modal from '../components/FindApartmentDetail/Modal'
 import NavbarComp from "../components/NavbarComp";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function FindApartmentDetail({ closeModal, openModal }) {
+function FindApartmentD({ closeModal, openModal }) {
+  //   const [ToastifyState, setToastifyState] = React.useContext(ToastifyContext);
+  const [loading, setLoading] = useState(false);
+  const [unit, setUnit] = useState([]);
+  const [prop, setProp] = useState([]);
+
+  const params = useParams();
+  //   const navigate = useNavigate();
+  let status = {
+    available: 1,
+    reserved: 2,
+  };
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://taximania-api.onrender.com/api/property/unit/${params.id}`,
+        (res) => {
+          res.json();
+        }
+      )
+      .then((data) =>
+        setUnit(
+          data.data.units.sort(
+            (a, b) => status[a.unitstatus] - status[b.unitstatus]
+          )
+        )
+      );
+  });
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://taximania-api.onrender.com/api/property/${params.id}`,
+        (res) => {
+          res.json();
+        }
+      )
+      .then((data) => {
+        setProp(data.data.property);
+        console.log(data.data.property);
+      });
+  }, [params.id]);
+
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   const style = {
     background: "rgb(2, 86, 144)",
   };
@@ -43,10 +93,6 @@ function FindApartmentDetail({ closeModal, openModal }) {
                   car_image6,
                 ]}
               />
-            </div>
-
-            <div className="text-center mt-6 mb-5 underline text-green-800 text-xl">
-              Learn More
             </div>
           </div>
         </div>
@@ -88,23 +134,64 @@ function FindApartmentDetail({ closeModal, openModal }) {
 
         {/*  */}
 
-        <div>
-          <FindApartmentGrid
-            closeModal={closeModal}
-            openModal={openModal}
-            images={[
-              car_image1,
-              car_image2,
-              car_image3,
-              car_image4,
-              car_image5,
-              car_image6,
-            ]}
-          />
+        <div className="my-5 row">
+          {unit.length > 0 ? (
+            <>
+              {unit.map((x) => {
+                return (
+                  <div className="col-4 p-2" key={x.id}>
+                    <div
+                      key={x.id}
+                      className="p-3 rounded text-center"
+                      style={{ background: "rgba(0,0,0,0.1)" }}
+                    >
+                      {
+                        <img
+                          src={`https://taximania-api.onrender.com/api/property/unit/image/${x.id}`}
+                          alt=""
+                          className="rounded"
+                        />
+                      }
+                      <div className="d-flex align-items-center justify-content-between mt-3">
+                        <p className="h6 m-0">{x.name.toUpperCase()}</p>
+                        <p className="h6 m-0">₦{numberWithCommas(x.price)}</p>
+                      </div>
+                      <p className="py-2" style={{ textAlign: "justify" }}>
+                        {x.description}
+                      </p>
+
+                      <div className="d-flex align-items-center justify-content-between">
+                        <small
+                          className={
+                            x.unitstatus === "available"
+                              ? "bg-success text-light p-1 rounded"
+                              : "bg-warning text-light p-1 rounded"
+                          }
+                        >
+                          {x.unitstatus.charAt(0).toUpperCase() +
+                            x.unitstatus.slice(1)}
+                        </small>{" "}
+                        {x.unitstatus === "available" ? (
+                          <Link
+                            to={`/reserve_unit/${x.id}`}
+                            className="btn btn-outline-primary"
+                          >
+                            Reserve
+                          </Link>
+                        ) : null}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </>
+          ) : (
+            <p className="py-5 h3">Loading Units Under {prop.name}...</p>
+          )}
         </div>
       </div>
     </>
   );
 }
 
-export default FindApartmentDetail;
+export default FindApartmentD;

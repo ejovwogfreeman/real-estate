@@ -21,8 +21,8 @@ const FindApartmentSearch = () => {
       <NavbarComp />
       <header className="background">
         <div>
-          <h1 className="h2 fw-bold">Recoa Square</h1>
-          <p>425 City Apartments in the heart of Victoria Island</p>
+          <h1 className="h2 fw-bold">Recoa Corporate Tenants</h1>
+          <p>View Our Corporate Tenants List</p>
           <form action="" className="select-form my-5-lg mt-3 mb-5">
             <select>
               {investors.length > 0 ? (
@@ -41,7 +41,7 @@ const FindApartmentSearch = () => {
               )}
             </select>
           </form>
-          <Link
+          {/* <Link
             to="/investor_login"
             style={{
               border: "3px solid white",
@@ -51,7 +51,7 @@ const FindApartmentSearch = () => {
             className="nohover"
           >
             Login To Reserve Unit
-          </Link>
+          </Link> */}
         </div>
       </header>
     </>
