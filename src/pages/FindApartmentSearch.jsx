@@ -41,7 +41,7 @@ const FindApartmentSearch = () => {
               )}
             </select>
           </form>
-          {/* <Link
+          <Link
             to="/investor_login"
             style={{
               border: "3px solid white",
@@ -51,7 +51,7 @@ const FindApartmentSearch = () => {
             className="nohover"
           >
             Login To Reserve Unit
-          </Link> */}
+          </Link>
         </div>
       </header>
     </>
