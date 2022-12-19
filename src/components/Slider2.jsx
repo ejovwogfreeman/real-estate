@@ -36,22 +36,22 @@ const Slider2 = () => {
         Browse SubMarkets
       </h1>
       <OwlCarousel className="owl-theme" {...options}>
-        <div class="item">
+        <div className="item">
           <img src={img8} alt="" />
           <Link to="/find_apartment" className="bg"></Link>
           <p className="h3-lg h4">Recoa Square</p>
         </div>
-        <div class="item">
+        <div className="item">
           <img src={img9} alt="" />
           <Link to="/find_apartment" className="bg"></Link>
           <p className="h3-lg h4">Recoa Park</p>
         </div>
-        <div class="item">
+        <div className="item">
           <img src={img7} alt="" />
           <Link to="/find_apartment" className="bg"></Link>
           <p className="h3-lg h4">Recoa Lakes</p>
         </div>
-        <div class="item">
+        <div className="item">
           <img src={img8} alt="" />
           <Link to="/find_apartment" className="bg"></Link>
           <p className="h3-lg h4">Recoa Square</p>

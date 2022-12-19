@@ -104,7 +104,18 @@ const UnitsUnderProperty = ({ handleChange3 }) => {
                   key={x.id}
                   className="d-flex align-items-center justify-content-between py-2 border-bottom"
                 >
-                  <p>{x.name}</p>
+                  <p>
+                    {x.name} &nbsp;{" "}
+                    <small
+                      className={
+                        x.unitstatus === "available"
+                          ? "bg-success text-light p-1 rounded"
+                          : "bg-warning text-light p-1 rounded"
+                      }
+                    >
+                      {x.unitstatus}
+                    </small>
+                  </p>
                   <span>
                     {/* <Link
                       to={`/edit_unit/${x.id}`}

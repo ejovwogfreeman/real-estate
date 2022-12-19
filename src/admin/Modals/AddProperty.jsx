@@ -9,7 +9,9 @@ const AddProperty = ({ handleAdd2 }) => {
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
+  const [description, setDescription] = useState("");
   const [status, setStatus] = useState("waitlist");
+  const [fileInput, setFileInput] = useState([]);
 
   const getToken = () => {
     try {
@@ -23,25 +25,37 @@ const AddProperty = ({ handleAdd2 }) => {
 
   const AccessToken = getToken();
 
-  const property = {
-    name: name,
-    location: location,
-    status: status,
-  };
-
   const handleSubmit = (e) => {
-    e.preventDefault();
+    console.log(fileInput);
     setLoading(true);
-    axios
-      .post("https://taximania-api.onrender.com/api/property/", property, {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "applicatioon/json",
-          Authorization: "Bearer " + AccessToken,
-        },
-      })
-      .then((res) => {
+    e.preventDefault();
+
+    var myHeaders = new Headers();
+
+    myHeaders.append("Authorization", "Bearer " + AccessToken);
+
+    var formdata = new FormData();
+    formdata.append("name", name);
+    formdata.append("location", location);
+    formdata.append("status", status);
+    formdata.append("description", description);
+    Array.from(fileInput).forEach((img) => {
+      formdata.append("file", img);
+    });
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: formdata,
+      redirect: "follow",
+    };
+
+    fetch("https://taximania-api.onrender.com/api/property", requestOptions)
+      .then((response) => {
+        response.text();
         setLoading(false);
+      })
+      .then((result) => {
         setToastifyState({
           ...ToastifyState,
           message: "Property Created Successfully",
@@ -49,17 +63,57 @@ const AddProperty = ({ handleAdd2 }) => {
           open: true,
         });
         handleAdd2();
-        localStorage.setItem("property-detail", JSON.stringify(res.data));
-      })
-      .catch((err) => {
+        localStorage.setItem("property-detail", JSON.stringify(result.data));
         setLoading(false);
+      })
+      .catch((error) => {
         setToastifyState({
           ...ToastifyState,
-          message: "Please Fill All Fields",
-          variant: "error",
+          message: "Property Created Successfully",
+          variant: "success",
           open: true,
         });
+        setLoading(false);
       });
+
+    // let formData = new FormData();
+    // formData.append("name", name);
+    // formData.append("location", location);
+    // formData.append("description", description);
+    // formData.append("status", status);
+    // Array.from(image).forEach((img) => {
+    //   formData.append("file", img);
+    // });
+
+    // axios
+    //   .post("https://taximania-api.onrender.com/api/property", formData, {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Accept: "applicatioon/json",
+    //       Authorization: "Bearer " + AccessToken,
+    //     },
+    //   })
+    //   .then((res) => {
+    //     setLoading(false);
+    //     setToastifyState({
+    //       ...ToastifyState,
+    //       message: "Property Created Successfully",
+    //       variant: "success",
+    //       open: true,
+    //     });
+    //     handleAdd2();
+    //     localStorage.setItem("property-detail", JSON.stringify(res.data));
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     setLoading(false);
+    //     setToastifyState({
+    //       ...ToastifyState,
+    //       message: "Please Fill All Fields",
+    //       variant: "error",
+    //       open: true,
+    //     });
+    //   });
   };
 
   return (
@@ -81,7 +135,8 @@ const AddProperty = ({ handleAdd2 }) => {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Enter Investor Username"
+            placeholder="Enter Property Name"
+            required
           />
         </div>
         <div>
@@ -90,7 +145,28 @@ const AddProperty = ({ handleAdd2 }) => {
             type="text"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            placeholder="Enter Investor Username"
+            placeholder="Enter Property Location"
+            required
+          />
+        </div>
+        <div>
+          <label>Description</label>
+          <textarea
+            type="text"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Enter Property Description"
+            required
+          ></textarea>
+        </div>
+        <div>
+          <label>Thumbnail</label>
+          <input
+            onChange={(e) => {
+              setFileInput(e.target.files);
+            }}
+            multiple
+            type="file"
           />
         </div>
         <div>
@@ -100,6 +176,7 @@ const AddProperty = ({ handleAdd2 }) => {
             value={status}
             name="company"
             style={{ width: "100%", cursor: "pointer" }}
+            required
           >
             <option value="waitlist">waitlist</option>
             <option value="live">live</option>

@@ -5,7 +5,7 @@ import { ToastifyContext } from "../context/ToastifyContext";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
-const ReserveUnit = ({ handleAdd2 }) => {
+const ReserveUnit = ({ handleAdd2, countState, clearCount }) => {
   const [ToastifyState, setToastifyState] = React.useContext(ToastifyContext);
   const [loading, setLoading] = useState(false);
 
@@ -29,7 +29,7 @@ const ReserveUnit = ({ handleAdd2 }) => {
 
   const getId = () => {
     try {
-      let id = JSON.parse(localStorage.getItem("investor-detail")).userId;
+      let id = JSON.parse(localStorage.getItem("investor-detail")).user.id;
       return id;
     } catch (err) {
       console.elog("no user id");
@@ -53,13 +53,18 @@ const ReserveUnit = ({ handleAdd2 }) => {
 
   const userId = getId();
 
+  const reserveData = {
+    userId: userId,
+    unitcount: countState.length > 0 ? countState[0].quantity : 1,
+  };
+
   const handleSubmit = (e) => {
     setLoading(true);
     e.preventDefault();
     axios
       .post(
         `https://taximania-api.onrender.com/api/property/unit/reserve/${params.id}`,
-        { userId: userId },
+        reserveData,
         {
           headers: {
             Accept: "application/json",
@@ -78,6 +83,7 @@ const ReserveUnit = ({ handleAdd2 }) => {
         });
         localStorage.setItem("updated-unit-detail", JSON.stringify(res));
         navigate("/reserve_unit_success");
+        clearCount();
       })
       .catch((err) => {
         console.log(err);
@@ -104,10 +110,11 @@ const ReserveUnit = ({ handleAdd2 }) => {
           </span>
         </div>
         <hr className="mb-3" />
-        <p className="mb-2">Sure you want to reserve unit? </p>
+        <p className="mb-2">Sure you want to reserve this unit? </p>
         <p>
           {" "}
-          Click "OK" to reserve unit{" "}
+          Click "OK" to reserve{" "}
+          {countState.length > 0 ? countState[0].quantity : 1} unit of
           <strong className="italic">"{unit.name}"</strong>
         </p>
         <div>

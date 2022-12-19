@@ -2,10 +2,6 @@ import React from "react";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-// import car_image1 from "../images/Rectangle 49 (6).jpg";
-// import car_image2 from "../images/Rectangle 49 (7).jpg";
-// import car_image3 from "../images/Rectangle 49 (4).jpg";
-// import car_image4 from "../images/Rectangle 49 (3).jpg";
 import img1 from "../RecoaImages/Pic 001 - Home Page Image - D.png";
 import img2 from "../RecoaImages/Pic 002 - Victoria Island.png";
 import img3 from "../RecoaImages/Pic 003 - Lekki Orchid District.jpg";
@@ -39,27 +35,27 @@ const Slider = () => {
         Browse SubMarkets
       </h1>
       <OwlCarousel className="owl-theme" {...options}>
-        <div class="item">
+        <div className="item">
           <img src={img2} alt="" />
           <Link to="/find_apartment" className="bg"></Link>
           <p className="h3-lg h4">Victoria Island</p>
         </div>
-        <div class="item">
+        <div className="item">
           <img src={img3} alt="" />
           <Link to="/find_apartment" className="bg"></Link>
           <p className="h3-lg h4">Lekki Orchid District</p>
         </div>
-        <div class="item">
+        <div className="item">
           <img src={img5} alt="" />
           <Link to="/find_apartment" className="bg"></Link>
           <p className="h3-lg h4">Ikoyi Main</p>
         </div>
-        <div class="item">
+        <div className="item">
           <img src={img6} alt="" />
           <Link to="/find_apartment" className="bg"></Link>
           <p className="h3-lg h4">Banana Island</p>
         </div>
-        <div class="item">
+        <div className="item">
           <img src={img1} alt="" />
           <Link to="/find_apartment" className="bg"></Link>
           <p className="h3-lg h4">Lekki Free Zone Axis</p>

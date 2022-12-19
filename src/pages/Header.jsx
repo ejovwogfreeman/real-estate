@@ -50,7 +50,11 @@ const Header = () => {
               <>
                 {" "}
                 {property.map((x) => {
-                  return <option value="Victoria Island">{x.location}</option>;
+                  return (
+                    <option value="Victoria Island" key={x.id}>
+                      {x.location}
+                    </option>
+                  );
                 })}
               </>
             ) : (

@@ -84,7 +84,18 @@ const PropertyModal = ({ handleChange2 }) => {
                   key={x.id}
                   className="d-flex align-items-center justify-content-between"
                 >
-                  <p>{x.name}</p>
+                  <p>
+                    {x.name} &nbsp;
+                    <small
+                      className={
+                        x.status === "live"
+                          ? "bg-success text-light p-1 rounded"
+                          : "bg-warning text-light p-1 rounded"
+                      }
+                    >
+                      {x.status}
+                    </small>
+                  </p>
                   <span>
                     <Link
                       to={`/edit_property/${x.id}`}

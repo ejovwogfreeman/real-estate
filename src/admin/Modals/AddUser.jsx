@@ -33,6 +33,7 @@ const AddUser = ({ handleAdd1 }) => {
   const AccessToken = getToken();
 
   const handleSubmit = (e) => {
+    console.log(AccessToken);
     setLoading(true);
     e.preventDefault();
     axios

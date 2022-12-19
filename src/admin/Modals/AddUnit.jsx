@@ -1,25 +1,3 @@
-// import React from "react";
-// import "./Modal.css";
-// import { AiOutlineClose } from "react-icons/ai";
-
-// const AddUnit = ({ handleAdd3 }) => {
-//   return (
-//     <div className="modal-cont">
-//       <div className="modal-cont-details">
-//         <div className="top">
-//           <h1>Add Unit</h1>
-//           <span>
-//             <AiOutlineClose onClick={handleAdd3} className="icon" />
-//           </span>
-//         </div>
-//         <hr />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default AddUnit;
-
 import React, { useState, useEffect } from "react";
 import "./Modal.css";
 import { AiOutlineClose } from "react-icons/ai";
@@ -36,10 +14,6 @@ const AddUnits = ({ handleAdd3 }) => {
   const [price, setPrice] = useState("");
   const [count, setCount] = useState("");
   const [image, setImage] = useState("");
-
-  const handleImage = (e) => {
-    setImage(e.target.files[0]);
-  };
 
   useEffect(() => {
     axios
@@ -73,7 +47,7 @@ const AddUnits = ({ handleAdd3 }) => {
     formData.append("count", count);
     formData.append("file", image);
     axios
-      .post("https://taximania-api.onrender.com/api/property/unit/", formData, {
+      .post("https://taximania-api.onrender.com/api/property/unit", formData, {
         headers: {
           Accept: "application/json",
           Authorization: "Bearer " + AccessToken,
@@ -188,7 +162,12 @@ const AddUnits = ({ handleAdd3 }) => {
         </div>
         <div>
           <label>Thumbnail</label>
-          <input type="file" name="file" onChange={handleImage} />
+          <input
+            type="file"
+            onChange={(e) => {
+              setImage(e.target.files[0]);
+            }}
+          />
         </div>
         <div>
           <button disabled={loading}>

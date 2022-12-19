@@ -28,16 +28,16 @@ const NavbarMobile = ({ open, handleOpen }) => {
                 <Link to="/">Home</Link>
               </li>
               <li onClick={() => handleOpen()}>
-                <Link to="/about-us">About Us</Link>
+                <Link to="/about_us">About Us</Link>
               </li>
               <li onClick={() => handleOpen()}>
-                <Link to="/find-apartment">Find your Apartment</Link>
+                <Link to="/find_apartment">Find your Apartment</Link>
               </li>
               <li onClick={() => handleOpen()}>
-                <Link to="/investor-login">Recoa Communities</Link>
+                <Link to="/investor_login">Recoa Communities</Link>
               </li>
               <li onClick={() => handleOpen()}>
-                <Link to="/corporate-tenant=">Corporate tenants</Link>
+                <Link to="/find_apartment/search">Corporate Tenants</Link>
               </li>
             </ul>
           </div>

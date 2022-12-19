@@ -51,6 +51,9 @@
 .modal-comp-form input {
   border: 1px solid rgba(0, 0, 0, 0.3);
 }
+.modal-comp-form textarea {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
 
 .modal-comp-form select {
   padding: 8px;

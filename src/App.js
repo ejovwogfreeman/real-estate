@@ -14,7 +14,7 @@ import FindApartmentSearch from "./pages/FindApartmentSearch";
 import Login from "./pages/Login";
 import Aboutus from "./pages/Aboutus";
 import FindApartment from "./pages/FindApartment";
-import FindApartmentDetail2 from "./pages/FindApartmentDetail2";
+// import FindApartmentDetail2 from "./pages/FindApartmentDetail2";
 import Modal from "./components/FindApartmentDetail/Modal";
 import ToastifyComponent from "./context/ToastifyContext";
 import Corporate from "./pages/Corporate";
@@ -49,7 +49,41 @@ function App() {
     setShowModal(false);
     setModalStage("");
   };
+  const [countState, setCountState] = useState([]);
 
+  const clearCount = () => {
+    setCountState([]);
+  };
+
+  const handleIncrease = (unit) => {
+    const exist = countState.find((x) => x.id === unit.id);
+    // console.log(exist);
+    if (exist) {
+      setCountState(
+        countState.map((x) =>
+          x.id === unit.id ? { ...exist, quantity: exist.quantity + 1 } : x
+        )
+      );
+    } else {
+      setCountState([...countState, { ...unit, quantity: 1 }]);
+    }
+    // console.log(countState);
+  };
+
+  const handleDecrease = (unit) => {
+    const exist = countState.find((x) => x.id === unit.id);
+    // console.log(exist);
+    if (exist.quantity === 1) {
+      setCountState(countState.filter((x) => x.id !== unit.id));
+    } else {
+      setCountState(
+        countState.map((x) =>
+          x.id === unit.id ? { ...exist, quantity: exist.quantity - 1 } : x
+        )
+      );
+    }
+    // console.log(countState);
+  };
   return (
     <>
       <UserComponent>
@@ -82,16 +116,10 @@ function App() {
                     <FindApartmentDetail
                       closeModal={closeModal}
                       openModal={openModal}
-                    />
-                  }
-                />
-                <Route
-                  exact
-                  path="/find_apartment/detail"
-                  element={
-                    <FindApartmentDetail2
-                      closeModal={closeModal}
-                      openModal={openModal}
+                      countState={countState}
+                      handleIncrease={handleIncrease}
+                      handleDecrease={handleDecrease}
+                      unitr
                     />
                   }
                 />
@@ -105,7 +133,15 @@ function App() {
                 <Route exact path="/join_waitlist/:id" element={<WaitList />} />
                 <Route exact path="/corporate-tenant" element={<Corporate />} />
                 <Route element={<ProtectedRoutes />}>
-                  <Route path="/reserve_unit/:id" element={<ReserveUnit />} />
+                  <Route
+                    path="/reserve_unit/:id"
+                    element={
+                      <ReserveUnit
+                        countState={countState}
+                        clearCount={clearCount}
+                      />
+                    }
+                  />
                 </Route>
                 <Route element={<ProtectedRoutes />}>
                   <Route
@@ -132,6 +168,3 @@ function App() {
 }
 
 export default App;
-
-// nddc password
-// RECOARdiU1HIw
