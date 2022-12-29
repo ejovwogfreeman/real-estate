@@ -78,14 +78,14 @@ const PropertyModal = ({ handleChange2 }) => {
         <hr />
         {property.length > 0 ? (
           <>
-            {property.map((x) => {
+            {property.map((x, index) => {
               return (
                 <div
                   key={x.id}
                   className="d-flex align-items-center justify-content-between"
                 >
                   <p>
-                    {x.name} &nbsp;
+                    {index + 1}.&nbsp;{x.name} &nbsp;
                     <small
                       className={
                         x.status === "live"
@@ -97,12 +97,12 @@ const PropertyModal = ({ handleChange2 }) => {
                     </small>
                   </p>
                   <span>
-                    <Link
+                    {/* <Link
                       to={`/edit_property/${x.id}`}
                       className="btn btn-outline-secondary me-2"
                     >
                       <BsPencilSquare />
-                    </Link>
+                    </Link> */}
                     <button
                       disabled={loading}
                       className="btn btn-outline-danger"

@@ -79,13 +79,15 @@ const UserModal = ({ handleChange1 }) => {
         <hr />
         {investors.length > 0 ? (
           <>
-            {investors.map((x) => {
+            {investors.map((x, index) => {
               return (
                 <div
                   key={x.id}
                   className="d-flex align-items-center justify-content-between"
                 >
-                  <p>{x.username}</p>
+                  <p>
+                    {index + 1}.&nbsp;{x.username}
+                  </p>
                   <button
                     disabled={loading}
                     className="btn btn-outline-danger"

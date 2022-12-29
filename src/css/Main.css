@@ -142,12 +142,6 @@
   .background {
     height: 500px;
   }
-  .about-container {
-    padding: 80px 5% 10px;
-  }
-  .find-container {
-    padding: 80px 5% 20px;
-  }
   .find-container .cont {
     display: block;
   }

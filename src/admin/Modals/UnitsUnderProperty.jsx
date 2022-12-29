@@ -98,14 +98,14 @@ const UnitsUnderProperty = ({ handleChange3 }) => {
         <hr className="mt-2 mb-1" />
         {unit.length > 0 ? (
           <>
-            {unit.map((x) => {
+            {unit.map((x, index) => {
               return (
                 <div
                   key={x.id}
                   className="d-flex align-items-center justify-content-between py-2 border-bottom"
                 >
                   <p>
-                    {x.name} &nbsp;{" "}
+                    {index + 1}.&nbsp;{x.name} &nbsp;{" "}
                     <small
                       className={
                         x.unitstatus === "available"

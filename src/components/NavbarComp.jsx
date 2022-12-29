@@ -67,7 +67,6 @@ const NavbarComp = ({ style }) => {
               <Link to="/find_apartment">Find your Apartment</Link>
             </li>
             <li className="dropdown">
-              {/* <Link to="/investor-login">Recoa Communities</Link> */}
               <p
                 style={{ color: "white", marginLeft: "30px" }}
                 onClick={() => setHide1(!hide1)}
@@ -108,36 +107,6 @@ const NavbarComp = ({ style }) => {
             <li>
               <Link to="/find_apartment/search">Corporate Tenants</Link>
             </li>
-            {/* <li className="dropdown">
-              <p
-                style={{ color: "white", marginLeft: "30px" }}
-                onClick={() => setHide2(!hide2)}
-              >
-                Corporate Tenants
-              </p>
-              <ul
-                className={
-                  hide2 ? "dropdown-details show1" : "dropdown-details hide1"
-                }
-              >
-                {investors.length > 0 ? (
-                  <>
-                    {" "}
-                    {investors.map((x) => {
-                      return (
-                        <li key={x.id}>
-                          <Link to={"/investor_login"}>{x.username}</Link>
-                        </li>
-                      );
-                    })}
-                  </>
-                ) : (
-                  <li>
-                    <Link to="/">Loading Investors...</Link>
-                  </li>
-                )}
-              </ul>
-            </li> */}
           </ul>
           <div className="right">
             <span className="mobileNav text-light">

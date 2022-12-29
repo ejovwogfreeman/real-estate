@@ -8,12 +8,16 @@ import UnitModal from "./Modals/UnitModal";
 import AddUser from "./Modals/AddUser";
 import AddProperty from "./Modals/AddProperty";
 import AddUnit from "./Modals/AddUnit";
+import WaitlistModal from "./Modals/Waitlist";
+import ReservesModal from "./Modals/Reserves";
 import { useState } from "react";
 
 const Tables = () => {
   const [modal1, setModal1] = useState(false);
   const [modal2, setModal2] = useState(false);
   const [modal3, setModal3] = useState(false);
+  const [modal4, setModal4] = useState(false);
+  const [modal5, setModal5] = useState(false);
   const [add1, setAdd1] = useState(false);
   const [add2, setAdd2] = useState(false);
   const [add3, setAdd3] = useState(false);
@@ -26,6 +30,12 @@ const Tables = () => {
   };
   const handleChange3 = () => {
     setModal3(!modal3);
+  };
+  const handleChange4 = () => {
+    setModal4(!modal4);
+  };
+  const handleChange5 = () => {
+    setModal5(!modal5);
   };
   const handleAdd1 = () => {
     setAdd1(!add1);
@@ -112,10 +122,48 @@ const Tables = () => {
               </button>
             </span>
           </li>
+          <li>
+            <span
+              className="res border-none"
+              onClick={() => setModal4(!modal4)}
+            >
+              Waitlists
+            </span>
+            <span className="actions border-none">
+              <button onClick={() => setAdd3(!add3)}>
+                <MdAdd />
+                add
+              </button>
+              <button onClick={() => setModal4(!modal4)}>
+                <BsTrash />
+                remove
+              </button>
+            </span>
+          </li>
+          <li>
+            <span
+              className="res border-none"
+              onClick={() => setModal5(!modal5)}
+            >
+              Reserves
+            </span>
+            <span className="actions border-none">
+              <button onClick={() => setAdd3(!add3)}>
+                <MdAdd />
+                add
+              </button>
+              <button onClick={() => setModal5(!modal5)}>
+                <BsTrash />
+                remove
+              </button>
+            </span>
+          </li>
         </ul>
         {modal1 ? <UserModal handleChange1={handleChange1} /> : null}
         {modal2 ? <PropertyModal handleChange2={handleChange2} /> : null}
         {modal3 ? <UnitModal handleChange3={handleChange3} /> : null}
+        {modal4 ? <WaitlistModal handleChange4={handleChange4} /> : null}
+        {modal5 ? <ReservesModal handleChange5={handleChange5} /> : null}
         {add1 ? <AddUser handleAdd1={handleAdd1} /> : null}
         {add2 ? <AddProperty handleAdd2={handleAdd2} /> : null}
         {add3 ? <AddUnit handleAdd3={handleAdd3} /> : null}

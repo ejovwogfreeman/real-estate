@@ -35,6 +35,9 @@ import FindApartmentDetail from "./pages/FindApartmentDetail";
 import ReserveUnit from "./pages/ReserveUnit";
 import ReserveUnitSuccess from "./pages/ReserveUnitSuccess";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import WaitListUnderProp from "./admin/Modals/WaitListUnderprop";
+import ReserveUnitUnderProp from "./admin/Modals/ReserveUnitUnderProp";
+import Reserved from "./admin/Modals/Reserved";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -57,7 +60,6 @@ function App() {
 
   const handleIncrease = (unit) => {
     const exist = countState.find((x) => x.id === unit.id);
-    // console.log(exist);
     if (exist) {
       setCountState(
         countState.map((x) =>
@@ -67,12 +69,10 @@ function App() {
     } else {
       setCountState([...countState, { ...unit, quantity: 1 }]);
     }
-    // console.log(countState);
   };
 
   const handleDecrease = (unit) => {
     const exist = countState.find((x) => x.id === unit.id);
-    // console.log(exist);
     if (exist.quantity === 1) {
       setCountState(countState.filter((x) => x.id !== unit.id));
     } else {
@@ -82,7 +82,6 @@ function App() {
         )
       );
     }
-    // console.log(countState);
   };
   return (
     <>
@@ -153,11 +152,16 @@ function App() {
                 <Route path="/admin_verify" element={<Verify />} />
                 <Route path="/admin_signin" element={<Signin />} />
                 <Route path="/admin_dashboard" element={<Dashboard />} />
-                <Route path="/edit_property/:id" element={<EditProperty />} />
                 <Route
                   path="/property_unit/:id"
                   element={<UnitsUnderProperty />}
                 />
+                <Route path="/waitlist/:id" element={<WaitListUnderProp />} />
+                <Route
+                  path="/reserved_unit/:id"
+                  element={<ReserveUnitUnderProp />}
+                />
+                <Route path="/reserved/:id" element={<Reserved />} />
               </Routes>
             </BrowserRouter>
           </div>

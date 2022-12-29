@@ -79,7 +79,7 @@ const AddUnits = ({ handleAdd3 }) => {
   return (
     <div className="modal-cont">
       <form
-        className="modal-cont-details modal-comp-form mt-5"
+        className="modal-cont-details modal-comp-form"
         onSubmit={handleSubmit}
       >
         <div className="top">
