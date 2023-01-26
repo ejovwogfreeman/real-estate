@@ -123,13 +123,10 @@
   background-color: whitesmoke;
 }
 
-/* .show-action {
-  opacity: 0;
+.component {
+  padding-left: 5%;
+  padding-right: 5%;
 }
-
-.show-cont-comp:hover .show-action {
-  opacity: 1;
-} */
 
 @media screen and (max-width: 960px) {
   .select-form {

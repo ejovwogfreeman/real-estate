@@ -97,12 +97,12 @@ const PropertyModal = ({ handleChange2 }) => {
                     </small>
                   </p>
                   <span>
-                    {/* <Link
+                    <Link
                       to={`/edit_property/${x.id}`}
                       className="btn btn-outline-secondary me-2"
                     >
                       <BsPencilSquare />
-                    </Link> */}
+                    </Link>
                     <button
                       disabled={loading}
                       className="btn btn-outline-danger"

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Modal.css";
 import { AiOutlineClose } from "react-icons/ai";
 import { ToastifyContext } from "../../context/ToastifyContext";
-import axios from "axios";
+// import axios from "axios";
 
 const AddProperty = ({ handleAdd2 }) => {
   const [ToastifyState, setToastifyState] = React.useContext(ToastifyContext);
@@ -43,6 +43,8 @@ const AddProperty = ({ handleAdd2 }) => {
       formdata.append("file", img);
     });
 
+    console.log(formdata);
+
     var requestOptions = {
       method: "POST",
       headers: myHeaders,
@@ -56,64 +58,23 @@ const AddProperty = ({ handleAdd2 }) => {
         setLoading(false);
       })
       .then((result) => {
+        handleAdd2();
+        setLoading(false);
         setToastifyState({
           ...ToastifyState,
           message: "Property Created Successfully",
           variant: "success",
           open: true,
         });
-        handleAdd2();
-        localStorage.setItem("property-detail", JSON.stringify(result.data));
-        setLoading(false);
       })
       .catch((error) => {
         setToastifyState({
           ...ToastifyState,
-          message: "Property Created Successfully",
-          variant: "success",
+          message: "An Error Occured",
+          variant: "error",
           open: true,
         });
-        setLoading(false);
       });
-
-    // let formData = new FormData();
-    // formData.append("name", name);
-    // formData.append("location", location);
-    // formData.append("description", description);
-    // formData.append("status", status);
-    // Array.from(image).forEach((img) => {
-    //   formData.append("file", img);
-    // });
-
-    // axios
-    //   .post("https://taximania-api.onrender.com/api/property", formData, {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Accept: "applicatioon/json",
-    //       Authorization: "Bearer " + AccessToken,
-    //     },
-    //   })
-    //   .then((res) => {
-    //     setLoading(false);
-    //     setToastifyState({
-    //       ...ToastifyState,
-    //       message: "Property Created Successfully",
-    //       variant: "success",
-    //       open: true,
-    //     });
-    //     handleAdd2();
-    //     localStorage.setItem("property-detail", JSON.stringify(res.data));
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     setLoading(false);
-    //     setToastifyState({
-    //       ...ToastifyState,
-    //       message: "Please Fill All Fields",
-    //       variant: "error",
-    //       open: true,
-    //     });
-    //   });
   };
 
   return (

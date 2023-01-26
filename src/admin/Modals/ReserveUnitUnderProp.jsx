@@ -26,18 +26,18 @@ const ReserveUnitUnderProp = ({ handleChange3 }) => {
       .then((data) => setUnit(data.data.units));
   });
 
-  useEffect(() => {
-    axios
-      .get(
-        `https://taximania-api.onrender.com/api/property/${params.id}`,
-        (res) => {
-          res.json();
-        }
-      )
-      .then((data) => {
-        setProp(data.data.property);
-      });
-  }, [params.id]);
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       `https://taximania-api.onrender.com/api/property/${params.id}`,
+  //       (res) => {
+  //         res.json();
+  //       }
+  //     )
+  //     .then((data) => {
+  //       setProp(data.data.property);
+  //     });
+  // }, [params.id]);
 
   return (
     <div className="modal-cont">
@@ -58,7 +58,7 @@ const ReserveUnitUnderProp = ({ handleChange3 }) => {
                   className="d-flex align-items-center justify-content-between py-2 border-bottom"
                 >
                   <p>
-                    <Link to={`/reserved/${params.id}`}>
+                    <Link to={`/reserved/${x.id}`}>
                       {index + 1}.&nbsp;{x.name}
                     </Link>
                   </p>

@@ -156,6 +156,7 @@ function App() {
                   path="/property_unit/:id"
                   element={<UnitsUnderProperty />}
                 />
+                <Route path="/edit_property/:id" element={<EditProperty />} />
                 <Route path="/waitlist/:id" element={<WaitListUnderProp />} />
                 <Route
                   path="/reserved_unit/:id"

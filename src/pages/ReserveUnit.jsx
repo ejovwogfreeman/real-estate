@@ -32,7 +32,7 @@ const ReserveUnit = ({ handleAdd2, countState, clearCount }) => {
       let id = JSON.parse(localStorage.getItem("investor-detail")).user.id;
       return id;
     } catch (err) {
-      console.elog("no user id");
+      console.log("no user id");
       return null;
     }
   };

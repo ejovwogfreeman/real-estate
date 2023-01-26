@@ -11,7 +11,8 @@ const Reserved = ({ handleAdd2 }) => {
 
   const params = useParams();
   console.log(params.id);
-  const [prop, setProp] = useState([]);
+
+  const [users, setUsers] = useState([]);
 
   const getToken = () => {
     try {
@@ -28,7 +29,7 @@ const Reserved = ({ handleAdd2 }) => {
   useEffect(() => {
     axios
       .get(
-        `https://taximania-api.onrender.com/api/property/waitlist/${params.id}`,
+        `https://taximania-api.onrender.com/api/property/unit/all/reserve/${params.id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -38,35 +39,37 @@ const Reserved = ({ handleAdd2 }) => {
         }
       )
       .then((res) => {
+        console.log(res);
+        setUsers(res.data.userreservedunitcountunique);
         setLoading(false);
-        setToastifyState({
-          ...ToastifyState,
-          message: res.data.message,
-          variant: "success",
-          open: true,
-        });
-        setProp(res.data.waitlists);
-        console.log(res.data.waitlists);
+        // setToastifyState({
+        //   ...ToastifyState,
+        //   message: res.data.message,
+        //   variant: "success",
+        //   open: true,
+        // });
+        // setProp(res.data.waitlists);
+        // console.log(res.data.waitlists);
       })
       .catch((err) => {
         console.log(err);
-        if (err.response.data.message) {
-          setLoading(false);
-          setToastifyState({
-            ...ToastifyState,
-            message: err.response.data.message,
-            variant: "error",
-            open: true,
-          });
-        } else {
-          setLoading(false);
-          setToastifyState({
-            ...ToastifyState,
-            message: "Please Fill All Fields",
-            variant: "error",
-            open: true,
-          });
-        }
+        // if (err.response.data.message) {
+        //   setLoading(false);
+        //   setToastifyState({
+        //     ...ToastifyState,
+        //     message: err.response.data.message,
+        //     variant: "error",
+        //     open: true,
+        //   });
+        // } else {
+        //   setLoading(false);
+        //   setToastifyState({
+        //     ...ToastifyState,
+        //     message: "Please Fill All Fields",
+        //     variant: "error",
+        //     open: true,
+        //   });
+        // }
       });
   }, []);
 
@@ -80,16 +83,16 @@ const Reserved = ({ handleAdd2 }) => {
           </Link>
         </div>
         <hr className="mb-3" />
-        {prop.length > 0 ? (
+        {users.length > 0 ? (
           <>
-            {prop.map((x, index) => {
+            {users.map((x, index) => {
               return (
                 <div
-                  key={x.id}
+                  key={x.unitId}
                   className="d-flex align-items-center justify-content-between"
                 >
                   <p>
-                    {index + 1}.&nbsp;{x.name} &nbsp;
+                    {index + 1}.&nbsp;{x.reserveCount} &nbsp;
                   </p>
                 </div>
               );
@@ -104,3 +107,5 @@ const Reserved = ({ handleAdd2 }) => {
 };
 
 export default Reserved;
+
+// password for investor sabinus => RECOAF4vmCG2V
