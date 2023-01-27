@@ -107,7 +107,6 @@ const AddUnits = ({ handleAdd3 }) => {
                       value={`${x.status === "live" ? x.id : null}`}
                       key={x.id}
                     >
-                      {console.log(x.id)}
                       {x.status === "live" ? x.name : "On Wait List"}
                     </option>
                   );

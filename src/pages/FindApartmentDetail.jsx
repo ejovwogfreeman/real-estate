@@ -101,21 +101,15 @@ function FindApartmentDetail({
         <div className="mb-5 row">
           {unit.length > 0 ? (
             <>
-              {unit.map((x) => {
+              {unit.map((x, index) => {
                 return (
-                  <div className="col-md-4 p-2 show-cont-comp" key={x.id}>
+                  <div className="col-md-4 p-2 show-cont-comp" key={index}>
                     <div
                       key={x.id}
                       className="p-3 rounded text-center"
                       style={{ background: "rgba(0,0,0,0.1)" }}
                     >
-                      {
-                        <img
-                          src={`https://taximania-api.onrender.com/api/property/unit/image/${x.id}`}
-                          alt=""
-                          className="rounded"
-                        />
-                      }
+                      {<img src={x.unitimage} alt="" className="rounded" />}
                       <div className="d-flex align-items-center justify-content-between mt-3">
                         <p className="h6 m-0">{x.name.toUpperCase()}</p>
                         <p className="h6 m-0">₦{numberWithCommas(x.price)}</p>
