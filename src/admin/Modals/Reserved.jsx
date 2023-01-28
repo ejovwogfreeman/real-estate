@@ -88,11 +88,29 @@ const Reserved = ({ handleAdd2 }) => {
             {users.map((x, index) => {
               return (
                 <div
-                  key={x.unitId}
-                  className="d-flex align-items-center justify-content-between"
+                  key={index}
+                  style={{
+                    borderBottom: "1px solid rgba(0,0,0,0.1)",
+                    width: "100%",
+                  }}
+                  className="pt-1 pb-3"
                 >
                   <p>
-                    {index + 1}.&nbsp;{x.reserveCount} &nbsp;
+                    <strong style={{ textTransform: "uppercase" }}>
+                      {index + 1}.&nbsp;{x.username} &nbsp;
+                    </strong>
+                  </p>
+                  <p className="d-flex align-items-center justify-content-between">
+                    <span style={{ flex: "1" }}>Unit Reserved</span>
+                    <span className="me-3">:</span>
+                    <span style={{ flex: "1" }}>{x.reserveCount} units</span>
+                  </p>
+                  <p className="d-flex align-items-center justify-content-between">
+                    <span style={{ flex: "1" }}>Reserve Date</span>
+                    <span className="me-3">:</span>
+                    <span style={{ flex: "1" }}>
+                      {new Date(x.reserveDate).toDateString()}
+                    </span>
                   </p>
                 </div>
               );

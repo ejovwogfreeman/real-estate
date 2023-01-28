@@ -103,10 +103,10 @@ const WaitListUnderProp = ({ handleAdd2 }) => {
                     className="pt-1 pb-3"
                   >
                     <p className="d-flex align-items-center justify-content-between">
-                      <span>
+                      <strong style={{ textTransform: "uppercase" }}>
                         {index + 1}.&nbsp;{x.name} &nbsp;
-                      </span>
-                      <small>{x.date}</small>
+                      </strong>
+                      <small>{new Date(x.date).toDateString()}</small>
                     </p>
 
                     <p className="d-flex align-items-center justify-content-between">
