@@ -52,7 +52,7 @@ const FindApartment = () => {
             {property.length > 0 ? (
               <>
                 {" "}
-                {property.map((x) => {
+                {property.map((x, index) => {
                   return (
                     <Link
                       to={
@@ -60,6 +60,7 @@ const FindApartment = () => {
                           ? "/find_apartment/detail/" + x.id
                           : "/join_waitlist/" + x.id
                       }
+                      key={index}
                     >
                       <div
                         className="row m-0 mb-2 p-2 rounded"

@@ -63,7 +63,15 @@ function App() {
     if (exist) {
       setCountState(
         countState.map((x) =>
-          x.id === unit.id ? { ...exist, quantity: exist.quantity + 1 } : x
+          x.id === unit.id
+            ? {
+                ...exist,
+                quantity:
+                  exist.count > exist.quantity
+                    ? exist.quantity + 1
+                    : exist.count,
+              }
+            : x
         )
       );
     } else {

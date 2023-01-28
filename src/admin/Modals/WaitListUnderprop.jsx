@@ -4,13 +4,13 @@ import { AiOutlineClose } from "react-icons/ai";
 import { ToastifyContext } from "../../context/ToastifyContext";
 import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import { Zoom } from "react-toastify";
 
 const WaitListUnderProp = ({ handleAdd2 }) => {
   const [ToastifyState, setToastifyState] = React.useContext(ToastifyContext);
   const [loading, setLoading] = useState(false);
 
   const params = useParams();
-  console.log(params.id);
   const [prop, setProp] = useState([]);
 
   const getToken = () => {
@@ -70,9 +70,16 @@ const WaitListUnderProp = ({ handleAdd2 }) => {
       });
   }, []);
 
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   return (
     <div className="modal-cont">
-      <div className="modal-cont-details modal-comp-form p-3 pt-4">
+      <div
+        className="modal-cont-details modal-comp-form p-3 pt-4"
+        style={{ width: "600px" }}
+      >
         <div className="top">
           <h1 className="h5">Waitlist under Property</h1>
           <Link to="/admin_dashboard">
@@ -88,9 +95,53 @@ const WaitListUnderProp = ({ handleAdd2 }) => {
                   key={x.id}
                   className="d-flex align-items-center justify-content-between"
                 >
-                  <p>
-                    {index + 1}.&nbsp;{x.name} &nbsp;
-                  </p>
+                  <div
+                    style={{
+                      borderBottom: "1px solid rgba(0,0,0,0.1)",
+                      width: "100%",
+                    }}
+                    className="pt-1 pb-3"
+                  >
+                    <p className="d-flex align-items-center justify-content-between">
+                      <span>
+                        {index + 1}.&nbsp;{x.name} &nbsp;
+                      </span>
+                      <small>{x.date}</small>
+                    </p>
+
+                    <p className="d-flex align-items-center justify-content-between">
+                      <span style={{ flex: "1" }}>Email</span>
+                      <span className="me-3">:</span>
+                      <span style={{ flex: "1" }}>{x.email}</span>
+                    </p>
+                    <p className="d-flex align-items-center justify-content-between">
+                      <span style={{ flex: "1" }}>Phone</span>
+                      <span className="me-3">:</span>
+                      <span style={{ flex: "1" }}>{x.phone}</span>
+                    </p>
+                    <p className="d-flex align-items-center justify-content-between">
+                      <span style={{ flex: "1" }}>Organisation</span>
+                      <span className="me-3">:</span>
+                      <span style={{ flex: "1" }}>{x.organisation}</span>
+                    </p>
+                    <p className="d-flex align-items-center justify-content-between">
+                      <span style={{ flex: "1" }}>Location</span>
+                      <span className="me-3">:</span>
+                      <span style={{ flex: "1" }}>{x.location}</span>
+                    </p>
+                    <p className="d-flex align-items-center justify-content-between">
+                      <span style={{ flex: "1" }}>Budget</span>
+                      <span className="me-3">:</span>
+                      <span style={{ flex: "1" }}>
+                        ₦{numberWithCommas(x.budget)}
+                      </span>
+                    </p>
+                    <p className="d-flex align-items-center justify-content-between">
+                      <span style={{ flex: "1" }}>Comment</span>
+                      <span className="me-3">:</span>
+                      <span style={{ flex: "1" }}>{x.comments}</span>
+                    </p>
+                  </div>
                 </div>
               );
             })}

@@ -83,7 +83,12 @@ function FindApartmentDetail({
       <NavbarComp style={style} />
       <ScrollToTop />
       <div className="pt-8 top-space component">
-        <div className="h3 text-center mb-0">Welcome to Reqoa Square</div>
+        <div
+          className="h3 text-center mb-0"
+          style={{ textTransform: "uppercase" }}
+        >
+          {prop.name ? "Welcome to " + prop.name : null}
+        </div>
         <OwlCarousel className="owl-theme" {...options}>
           {prop.images
             ? prop.images.length > 0
@@ -109,7 +114,17 @@ function FindApartmentDetail({
                       className="p-3 rounded text-center"
                       style={{ background: "rgba(0,0,0,0.1)" }}
                     >
-                      {<img src={x.unitimage} alt="" className="rounded" />}
+                      {
+                        <img
+                          src={x.unitimage}
+                          alt=""
+                          className="rounded"
+                          style={{
+                            width: "100%",
+                            objectFit: "cover",
+                          }}
+                        />
+                      }
                       <div className="d-flex align-items-center justify-content-between mt-3">
                         <p className="h6 m-0">{x.name.toUpperCase()}</p>
                         <p className="h6 m-0">₦{numberWithCommas(x.price)}</p>
@@ -128,7 +143,7 @@ function FindApartmentDetail({
                             <>
                               {countState.map((y) => {
                                 return (
-                                  <span id={y.id}>
+                                  <span id={y.id} key={y.id}>
                                     {y.id === x.id ? (
                                       <span>
                                         {y.quantity > 0 ? (
@@ -140,9 +155,7 @@ function FindApartmentDetail({
                                           </button>
                                         ) : null}
                                         <span className="px-3">
-                                          {y.quantity > y.count
-                                            ? y.count
-                                            : y.quantity}
+                                          {y.quantity}
                                         </span>
                                       </span>
                                     ) : (

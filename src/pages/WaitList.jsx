@@ -71,16 +71,18 @@ const WaitList = () => {
         }
       )
       .then((res) => {
+        console.log(res);
         console.log(res.data.message);
         setLoading(false);
         setToastifyState({
           ...ToastifyState,
-          message: res.data.message,
+          // message: res.data.message,
+          message: "Waitlist joined successfully",
           variant: "success",
           open: true,
         });
         navigate("/");
-        localStorage.setItem("investor-detail", JSON.stringify(res.data));
+        localStorage.setItem("waitlist-detail", JSON.stringify(res.data));
         console.log(res);
       })
       .catch((err) => {
@@ -214,3 +216,6 @@ const WaitList = () => {
 };
 
 export default WaitList;
+
+// RECOAayG5YBjT
+// RECOAdy0W19FA
